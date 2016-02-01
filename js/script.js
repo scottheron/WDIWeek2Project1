@@ -91,7 +91,7 @@ $(document).ready(function(){
 	*/
 	$('#black-card-back').on('click', function(){
 		if(blackCardArray.length) {
-			randomNum = Math.floor(Math.random() * blackCardArray.length);
+			randomNum = randomNumber(blackCardArray);
 			$('#sentence-space').html('<p>"'+blackCardArray[randomNum]+'"</p>');
 			console.log(blackCardArray[randomNum]);
 			blackCardArray.splice(randomNum, 1);
