@@ -6,7 +6,10 @@ $(document).ready(function(){
 
 	/*General variables for counters, random number values etc. */
 	var randomNum;
-	var replaceString;
+	var playerOneHandArray = [];
+	var playerTwoHandArray = [];
+	var playersHands = 6; //6 cards in each players hand.
+	var playerOnePlayerTwo = true;
 
 	/*Black card array holding the sentence card values*/
 	var blackCardArray = [
@@ -49,7 +52,22 @@ $(document).ready(function(){
 		"scientology"
 	]
 
+	/*function to generate a random number between 0 and the length of any given array passed to the function*/
+	function randomNumber(array) {
+		randomNum = Math.floor(Math.random() * array.length);
+		return randomNum;
+	}
+
+	/*Initially set up the start of the game by giving each player a hand of six white cards randomly selected from the whiteCardArray and remove those cards from the white card deck using .splice*/
 	
+	for (var i = 0; i < playersHands; i++) {
+		randomNum = randomNumber(whiteCardArray);
+		playerOneHandArray[i] = whiteCardArray[randomNum];
+		whiteCardArray.splice(randomNum, 1);
+		randomNum = randomNumber(whiteCardArray);
+		playerTwoHandArray[i] = whiteCardArray[randomNum];
+	}
+
 	/*Clicking on the black card div generates a random number which is used to pick an entry from blackCardArray[] and displaying that entry to the sentence-space div. The card is then removed from the deck using .splice. once the last card has been played a message is displayed.*/
 	$('#black-card-back').on('click', function(){
 		if(blackCardArray.length) {
@@ -63,11 +81,16 @@ $(document).ready(function(){
 		}
 	});
 
-	/*Replacing the underscore blank in the blackCardArray with text from the whiteCardArray*/
+	/*when a white card is clicked, displ;ay its value on the white card and then replace the underscore blank in the blackCardArray with text from the whiteCardArray*/
+	
+
+
+	/* test code
 	console.log(blackCardArray[3]);
 	console.log(whiteCardArray[0]);
 	blackCardArray[3] = blackCardArray[3].replace('_________', whiteCardArray[0]); 
 	console.log(blackCardArray[3]);
+	*/
 
 
 
