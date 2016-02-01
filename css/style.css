@@ -1,3 +1,56 @@
 /*
 WDI 06 - Project 1, Cards Against Humanity. style.css file.
 */
+
+/*General site styling*/
+body {
+	background-color: black;
+	
+}
+
+
+/*setting up the table top*/
+#background-image {
+	
+	position: fixed;
+	left: 15em;
+	top: 20em;
+	width: 30em;
+	height: 15em;
+	background-image: url('file:///home/scott/code/WDIWeek2Project1/images/social-3f4a4c57.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	
+}
+
+#white-card-back {
+	position: fixed;
+	left: 35em;
+	top: 17em;
+	width: 10em;
+	height: 15em;
+	background-image: url('file:///home/scott/code/WDIWeek2Project1/images/back-white.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-color: white;
+	border-radius: 5%;
+}
+
+/*CSS styling for the cards*/
+
+/*
+#card {
+	margin: 5px;
+	width: 100px;
+	height: 100px;
+	background-color: grey;
+}
+
+.front {
+	padding: 5px;
+} 
+
+.back {
+	padding: 5px;
+}
+*/

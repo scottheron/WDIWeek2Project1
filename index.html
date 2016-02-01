@@ -10,19 +10,66 @@ WDI 06 - Project 1, Cards Against Humanity. index.html file.
 </head>
 <body>
 
-<!-- Card flip, defining a front and back -->
-	<div id="card"> 
-  		<div class="front"> 
-    		Front content
-  		</div> 
-  		<div class="back">
-    		Back content
-  		</div> 
-	</div>
+<!-- Basic game layout before fancyifying - START -->
 	
+	<!-- The Table Top - START -->
+	<div id="background-image"></div>
+	<div id="white-card-back"></div>
+	<div id="black-card-back">black-card-back</div>
+	<!-- The Table Top - END -->
 
+
+	<!-- Players hand of cards - START -->	
+	<div class="player-cards">
+		<div id="card1">
+			
+		</div>
+		<div id="card2">
+			
+		</div>
+		<div id="card3">
+			
+		</div>
+		<div id="card4">
+			
+		</div>
+		<div id="card5">
+			
+		</div>
+		<div id="card6">
+			
+		</div>
+
+	</div>
+	<!-- Players hand of cards - END -->
+
+
+
+<!-- Basic game layout before fancyifying - END -->
+
+
+<!-- Card flip, defining a front and back -->
+
+<!--   	
+	<div id="card"> 
+  		<div class="front" style="height: 100%; width: 100%; backface-visibility: hidden; transform-style: preserve-3d; position: absolute; z-index: 1; transition: all 0.5s ease-out; transform: rotateY(0deg);"> 
+        	<img src="http://www.fillmurray.com/g/140/100" style="backface-visibility: hidden;">
+    	</div>
+    	<div class="back" style="transform: rotateY(-180deg); height: 100%; width: 100%; backface-visibility: hidden; transform-style: preserve-3d; position: absolute; z-index: 0; transition: all 0.5s ease-out;">
+        	Image from www.wallko.com
+    	</div>
+	</div>
+-->
+
+
+
+
+
+	
+<!-- Scripts to run the site -->
 	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="https://cdn.rawgit.com/nnattawat/flip/v1.0.19/dist/jquery.flip.min.js"></script>
+	<script type="text/javascript" src="ui/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
 </body>
