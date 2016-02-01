@@ -14,8 +14,6 @@ body {
 p {
 	font-family: 'Lato', ultra-bold;
 	font-weight: 900;
-	
-	color: white;
 }
 /*setting the paragraphs font and text positioning - END*/
 
@@ -41,22 +39,24 @@ p {
 	width: 28em;
 	height: 15em;
 	background-color: black;
+	color: white;
 }
 
 /*Score tracker - END*/
 
 /*the stack of white cards each player draws from to get the initial play sentence - START*/
-#white-card-back {
+#black-card-back {
 	position: fixed;
 	left: 35em;
 	top: 17em;
 	width: 10em;
 	height: 15em;
-	background-image: url('file:///home/scott/code/WDIWeek2Project1/images/back-white.png');
+	background-image: url('file:///home/scott/code/WDIWeek2Project1/images/social-3f4a4c57.png');
 	background-size: contain;
 	background-repeat: no-repeat;
-	background-color: white;
+	background-color: black;
 	border-radius: 5%;
+	border: 1px solid white;
 }
 /*the stack of white cards each player draws from to get the initial play sentence - END*/
 
@@ -64,11 +64,11 @@ p {
 .player-cards {
 	width: 8em;
 	height: 12em;
-	background-color: black;
-	border: 1px solid white;
+	background-color: white;
 	border-radius: 5%;
 	padding-left: 1em;
 	margin: 1em;
+	color: black;
 }
 /*player cards attributes such as size, color and position - END*/
 
