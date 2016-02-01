@@ -2,24 +2,37 @@
 WDI 06 - Project 1, Cards Against Humanity. style.css file.
 */
 
-/*General site styling - START*/
+/*
+* General site styling - START
+*/
 body {
 	background-color: black;
 	height: 100%;
 	
 }
-/*General site styling - END*/
+/*
+* General site styling - END
+*/
 
-/*setting the paragraphs font and text positioning - START*/
+/*
+* setting the paragraphs font and text positioning - START
+*/
 p {
 	font-family: 'Lato', ultra-bold;
 	font-weight: 900;
 
 }
-/*setting the paragraphs font and text positioning - END*/
+/*
+* setting the paragraphs font and text positioning - END
+*/
 
-/*setting up the table top -START*/
-/*setting the background attributes such image position and card layout - START*/
+/*
+* setting up the table top -START
+*/
+/*
+* setting the background attributes such image position and card
+* layout - START
+*/
 #background-image {
 	position: fixed;
 	left: 15em;
@@ -30,9 +43,14 @@ p {
 	background-size: contain;
 	background-repeat: no-repeat;
 }
-/*setting the background attributes such image position and card layout - END*/
+/*
+* setting the background attributes such image position and card
+* layout - END
+*/
 
-/*Score tracker - START*/
+/*
+* Score tracker - START
+*/
 #score-tracker {
 	position: fixed;
 	left: 1em;
@@ -43,9 +61,13 @@ p {
 	color: white;
 	font-size: 1.1em;
 }
-/*Score tracker - END*/
+/*
+* Score tracker - END
+*/
 
-/*The black card sentence space - START*/
+/*
+* The black card sentence space - START
+*/
 #sentence-space {
 	position: fixed;
 	left: 40em;
@@ -57,9 +79,14 @@ p {
 	padding: 1em 0.5em 1em 0.5em;
 	font-size: 1.2em;
 }
-/*The black card sentence space - END*/
+/*
+* The black card sentence space - END
+*/
 
-/*the stack of white cards each player draws from to get the initial play sentence - START*/
+/*
+* the stack of white cards each player draws from to get the initial
+* play sentence - START
+*/
 #black-card-back {
 	position: fixed;
 	left: 35em;
@@ -73,9 +100,14 @@ p {
 	border-radius: 5%;
 	border: 1px solid white;
 }
-/*the stack of white cards each player draws from to get the initial play sentence - END*/
+/*
+* the stack of white cards each player draws from to get the initial
+* play sentence - END
+*/
 
-/*player cards attributes such as size, color and position - START*/
+/*
+* player cards attributes such as size, color and position - START
+*/
 .player-cards {
 	width: 8em;
 	height: 12em;
@@ -85,9 +117,13 @@ p {
 	margin: 1em;
 	color: black;
 }
-/*player cards attributes such as size, color and position - END*/
+/*
+* player cards attributes such as size, color and position - END
+*/
 
-/*player one card specific attributes related to position - START*/
+/*
+* player one card specific attributes related to position - START
+*/
 #cardp1-1 {
 	position: fixed;
 	left: 1em;
@@ -118,9 +154,13 @@ p {
 	left: 51em;
 	top: 35em;
 }
-/*player one card specific attributes related to position - END*/
+/*
+* player one card specific attributes related to position - END
+*/
 
-/*player two card specific attributes related to position - START*/
+/*
+* player two card specific attributes related to position - START
+*/
 #cardp2-1 {
 	position: fixed;
 	left: 10em;
@@ -151,10 +191,15 @@ p {
 	left: 60em;
 	top: 1em;
 }
-/*player two card specific attributes related to position - END*/
-/*setting up the table top - END*/
-
-/*CSS styling for the cards*/
+/*
+* player two card specific attributes related to position - END
+*/
+/*
+* setting up the table top - END
+*/
+/*
+* CSS styling for the cards
+*/
 
 /*
 #card {
