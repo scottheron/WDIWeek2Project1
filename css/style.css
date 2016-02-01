@@ -8,9 +8,16 @@ body {
 	height: 100%;
 	
 }
-
+/*setting the paragraphs font and text positioning*/
+p {
+	font-family: 'Lato', ultra-bold;
+	font-weight: 900;
+	padding-left: 1em;
+	
+}
 
 /*setting up the table top*/
+/*setting the background attributes such image position and card layout*/
 #background-image {
 	position: fixed;
 	left: 15em;
@@ -21,7 +28,7 @@ body {
 	background-size: contain;
 	background-repeat: no-repeat;
 }
-
+/*the stack of white cards each player draws from to get the initial play sentence*/
 #white-card-back {
 	position: fixed;
 	left: 35em;
@@ -34,43 +41,76 @@ body {
 	background-color: white;
 	border-radius: 5%;
 }
-
-.player-one-cards {
+/*player cards attributes such as size, color and position*/
+.player-cards {
 	width: 8em;
 	height: 12em;
 	background-color: black;
 	border: 1px solid white;
 	border-radius: 5%;
 	color: white;
-	display: inline;
 }
-
+/*player one card specific attributes related to position*/
 #cardp1-1 {
 	position: fixed;
 	left: 1em;
 	top: 35em;
 }
-
 #cardp1-2 {
 	position: fixed;
 	left: 10em;
 	top: 35em;
 }
-
 #cardp1-3 {
 	position: fixed;
 	left: 19em;
 	top: 35em;
 }
-
-#cardp1-3 {
+#cardp1-4 {
 	position: fixed;
-	left: 19em;
+	left: 28em;
 	top: 35em;
 }
-
-.player-two-cards {
-
+#cardp1-5 {
+	position: fixed;
+	left: 37em;
+	top: 35em;
+}
+#cardp1-6 {
+	position: fixed;
+	left: 46em;
+	top: 35em;
+}
+/*player two card specific attributes related to position*/
+#cardp2-1 {
+	position: fixed;
+	left: 10em;
+	top: 1em;
+}
+#cardp2-2 {
+	position: fixed;
+	left: 19em;
+	top: 1em;
+}
+#cardp2-3 {
+	position: fixed;
+	left: 28em;
+	top: 1em;
+}
+#cardp2-4 {
+	position: fixed;
+	left: 37em;
+	top: 1em;
+}
+#cardp2-5 {
+	position: fixed;
+	left: 46em;
+	top: 1em;
+}
+#cardp2-6 {
+	position: fixed;
+	left: 55em;
+	top: 1em;
 }
 
 
