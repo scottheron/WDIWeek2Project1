@@ -7,8 +7,8 @@ WDI 06 - Project 1, Cards Against Humanity. style.css file.
 */
 body {
 	background-color: black;
-	height: 100%;
-	
+	height: 0em;
+	position: fixed;
 }
 /*
 * General site styling - END
@@ -20,7 +20,6 @@ body {
 p {
 	font-family: 'Lato', ultra-bold;
 	font-weight: 900;
-
 }
 /*
 * setting the paragraphs font and text positioning - END
@@ -111,11 +110,33 @@ p {
 .player-cards {
 	width: 8em;
 	height: 12em;
-	background-color: white;
 	border-radius: 5%;
 	padding-left: 1em;
 	margin: 1em;
 	color: black;
+	position: fixed;
+}
+
+.player-cards .front {
+	background-color: white;
+	width: 8em;
+	height: 12em;
+	border-radius: 5%;
+	padding-left: 1em;
+	margin: 1em;
+	color: black;
+	position: fixed;
+}
+
+.player-cards .back {
+	background-color: white;
+	width: 8em;
+	height: 12em;
+	border-radius: 5%;
+	padding-left: 1em;
+	margin: 1em;
+	color: black;
+	position: fixed;
 }
 /*
 * player cards attributes such as size, color and position - END
@@ -126,33 +147,33 @@ p {
 */
 #cardp1-1 {
 	position: fixed;
-	left: 1em;
+	left: -2em;
 	top: 35em;
 }
 #cardp1-2 {
 	position: fixed;
-	left: 11em;
-	top: 35em;
+	left: 9em;
+	top: 22em;
 }
 #cardp1-3 {
 	position: fixed;
-	left: 21em;
-	top: 35em;
+	left: 20em;
+	top: 9em;
 }
 #cardp1-4 {
 	position: fixed;
 	left: 31em;
-	top: 35em;
+	top: -4em;
 }
 #cardp1-5 {
 	position: fixed;
-	left: 41em;
-	top: 35em;
+	left: 42em;
+	top: -17em;
 }
 #cardp1-6 {
 	position: fixed;
-	left: 51em;
-	top: 35em;
+	left: 53em;
+	top: -30em;
 }
 /*
 * player one card specific attributes related to position - END
@@ -164,32 +185,32 @@ p {
 #cardp2-1 {
 	position: fixed;
 	left: 10em;
-	top: 1em;
+	top: -79em;
 }
 #cardp2-2 {
 	position: fixed;
-	left: 20em;
-	top: 1em;
+	left: 21em;
+	top: -92em;
 }
 #cardp2-3 {
 	position: fixed;
-	left: 30em;
-	top: 1em;
+	left: 32em;
+	top: -105em;
 }
 #cardp2-4 {
 	position: fixed;
-	left: 40em;
-	top: 1em;
+	left: 43em;
+	top: -118em;
 }
 #cardp2-5 {
 	position: fixed;
-	left: 50em;
-	top: 1em;
+	left: 54em;
+	top: -131em;
 }
 #cardp2-6 {
 	position: fixed;
-	left: 60em;
-	top: 1em;
+	left: 65em;
+	top: -144em;
 }
 /*
 * player two card specific attributes related to position - END

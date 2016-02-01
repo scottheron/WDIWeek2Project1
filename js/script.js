@@ -86,7 +86,7 @@ $(document).ready(function(){
 	* Clicking on the black card div generates a random number which
 	* is used to pick an entry from blackCardArray[] and displaying
 	* that entry to the sentence-space div. The card is then removed
-	* from the deck using .splice. once the last card has been played
+	* from the deck using .splice. Once the last card has been played
 	* a message is displayed.
 	*/
 	$('#black-card-back').on('click', function(){
@@ -100,6 +100,13 @@ $(document).ready(function(){
 			$('#sentence-space').html('<p>"Aww no more cards :.("</p>');
 		}
 	});
+
+	/*
+	* flip 
+	*/
+	$('.player-cards').flip();
+
+
 
 	/*
 	* when a white card is clicked, display its value on the white
