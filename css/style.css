@@ -5,13 +5,13 @@ WDI 06 - Project 1, Cards Against Humanity. style.css file.
 /*General site styling*/
 body {
 	background-color: black;
+	height: 100%;
 	
 }
 
 
 /*setting up the table top*/
 #background-image {
-	
 	position: fixed;
 	left: 15em;
 	top: 20em;
@@ -20,7 +20,6 @@ body {
 	background-image: url('file:///home/scott/code/WDIWeek2Project1/images/social-3f4a4c57.png');
 	background-size: contain;
 	background-repeat: no-repeat;
-	
 }
 
 #white-card-back {
@@ -35,6 +34,45 @@ body {
 	background-color: white;
 	border-radius: 5%;
 }
+
+.player-one-cards {
+	width: 8em;
+	height: 12em;
+	background-color: black;
+	border: 1px solid white;
+	border-radius: 5%;
+	color: white;
+	display: inline;
+}
+
+#cardp1-1 {
+	position: fixed;
+	left: 1em;
+	top: 35em;
+}
+
+#cardp1-2 {
+	position: fixed;
+	left: 10em;
+	top: 35em;
+}
+
+#cardp1-3 {
+	position: fixed;
+	left: 19em;
+	top: 35em;
+}
+
+#cardp1-3 {
+	position: fixed;
+	left: 19em;
+	top: 35em;
+}
+
+.player-two-cards {
+
+}
+
 
 /*CSS styling for the cards*/
 
