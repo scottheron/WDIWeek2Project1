@@ -158,8 +158,16 @@ $(document).ready(function(){
   		var draggable = ui.draggable;
   		var card = draggable.attr('id');
   		var cardInner = $('#'+card+' > .back').text();
-  		blackCardInUse = blackCardInUse.replace('_________', cardInner);
-  		$('#sentence-space').html('<p>"'+blackCardInUse+'"</p>');
+  		if (blackCardInUse.indexOf('_________') != -1) {
+  			console.log('here1');
+  			console.log(blackCardInUse);
+  			blackCardInUse = blackCardInUse.replace('_________', cardInner);
+  			$('#sentence-space').html('<p>"'+blackCardInUse+'"</p>');
+  		}
+  		else {
+  			console.log('here2');
+  			$('#sentence-space').html('<p>"'+blackCardInUse+'"</p><br>'+cardInner);
+  		}
 
   	}
 	
