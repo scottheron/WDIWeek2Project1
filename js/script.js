@@ -1,12 +1,12 @@
-/*
-WDI 06 - Project 1, Cards Against Humanity. script.js file.
-*/
+/************************************************************
+*WDI 06 - Project 1, Cards Against Humanity. script.js file.*
+************************************************************/
 
 $(document).ready(function(){
 
-	/*
-	* General variables for counters, arrays, random number values etc.
-	*/
+	/*******************************************************************
+	* General variables for counters, arrays, random number values etc.*
+	*******************************************************************/
 	var randomNum;//stores the random number from the function below.
 	var playerOneHandArray = [];//stores text of player 1's cards
 	var playerTwoHandArray = [];//stores text of player 2's cards
@@ -16,8 +16,8 @@ $(document).ready(function(){
 	var playersHands = 6; //6 cards in each players hand.
 	var playerOnePlayerTwo = true;//determins which player array to use
 	var draggableId;//stores the ID of the dropped card  
-	var temp//temporary variable
-
+	var blackCardInUse;//black card in play
+	
 	/*
 	* Black card array holding the sentence card values. This is the
 	* Black card deck.
@@ -113,7 +113,8 @@ $(document).ready(function(){
 		if(blackCardArray.length) {
 			randomNum = randomNumber(blackCardArray);
 			$('#sentence-space').html('<p>"'+blackCardArray[randomNum]+'"</p>');
-			console.log(blackCardArray[randomNum]);
+			blackCardInUse = blackCardArray[randomNum];
+			console.log(blackCardInUse);
 			blackCardArray.splice(randomNum, 1);
 		}
 		else {
@@ -151,18 +152,25 @@ $(document).ready(function(){
 	/*
 	* function detects a card drop and identifies the card by it's
 	* specific ID. it then burrows down to the inner div's with '>'
-	* and access the text held in the .back class div
+	* and accesses the text held in the .back class div
 	*/
 	function handleDropEvent( event, ui ) {
   		var draggable = ui.draggable;
   		var card = draggable.attr('id');
   		var cardInner = $('#'+card+' > .back').text();
-  		  		
-	}
+  		blackCardInUse = blackCardInUse.replace('_________', cardInner);
+  		$('#sentence-space').html('<p>"'+blackCardInUse+'"</p>');
 
-	$('#card-drop').droppable( {
+  	}
+	
+	/*
+	* creates drop space
+	*/
+	$('#card-drop').droppable({
     	drop: handleDropEvent
-  	} );
+  	});
+	
+  	
 
 		
 });
