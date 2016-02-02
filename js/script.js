@@ -116,9 +116,20 @@ $(document).ready(function(){
 	* content on the back of the card.
 	*/
 	$('.player-cards').flip();
-
 	
-
+	/*
+	* 
+	*/
+	for (var j = 0; j < 2; j++) {
+		for (var i = 0; i < playersHands; i++) {
+			$('#draggablep'+j+'-'+i).draggable({
+    			containment: '#content',
+    			cursor: 'move',
+    			snap: '#content'
+  			});
+		}
+	}
+		
 });
 
 /*<span class="glyphicon glyphicon-ok-sign"></span>*/

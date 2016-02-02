@@ -9,6 +9,7 @@ WDI 06 - Project 1, Cards Against Humanity. index.html file.
 	external font, Slabo 
 	-->
 	<link href='https://fonts.googleapis.com/css?family=Lato:400,900' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 	<link rel="stylesheet" media="screen" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<title>Cards Against Humanity</title>
@@ -61,7 +62,7 @@ Basic game layout before fancyifying - START
 	Player One 
 	-->
 	<div id="handp1">
-		<div class="player-cards">
+		<div id="draggablep0-0" class="player-cards">
 			<div class="front"> 		
 				<p>Cards<br>Against<br>Humanity</p>
 			</div>
@@ -69,7 +70,7 @@ Basic game layout before fancyifying - START
 		 		<p></p>
 			</div>
 		</div>
-		<div class="player-cards">
+		<div id="draggablep0-1" class="player-cards">
 			<div class="front"> 		
 				<p>Cards<br>Against<br>Humanity</p>
 			</div>
@@ -77,7 +78,7 @@ Basic game layout before fancyifying - START
 			 	<p></p>
 			</div>
 		</div>
-		<div class="player-cards">
+		<div id="draggablep0-2" class="player-cards">
 			<div class="front"> 		
 				<p>Cards<br>Against<br>Humanity</p>
 			</div>
@@ -85,7 +86,7 @@ Basic game layout before fancyifying - START
 			 	<p></p>
 			</div>
 		</div>
-		<div class="player-cards" >
+		<div id="draggablep0-3" class="player-cards" >
 			<div class="front"> 		
 				<p>Cards<br>Against<br>Humanity</p>
 			</div>
@@ -93,7 +94,7 @@ Basic game layout before fancyifying - START
 			 	<p></p>
 			</div>
 		</div>
-		<div class="player-cards">
+		<div id="draggablep0-4" class="player-cards">
 			<div class="front"> 		
 				<p>Cards<br>Against<br>Humanity</p>
 			</div>
@@ -101,7 +102,7 @@ Basic game layout before fancyifying - START
 			 	<p></p>
 			</div>
 		</div>
-		<div class="player-cards">
+		<div id="draggablep0-5" class="player-cards">
 			<div class="front"> 		
 				<p>Cards<br>Against<br>Humanity</p>
 			</div>
@@ -116,7 +117,7 @@ Basic game layout before fancyifying - START
 	Player Two 
 	-->
 	<div id="handp2">
-		<div class="player-cards">
+		<div id="draggablep1-0" class="player-cards">
 			<div class="front"> 		
 				<p>Cards<br>Against<br>Humanity</p>
 			</div>
@@ -124,7 +125,7 @@ Basic game layout before fancyifying - START
 			 	<p></p>
 			</div>
 		</div>
-		<div class="player-cards">
+		<div id="draggablep1-1" class="player-cards">
 			<div class="front"> 		
 				<p>Cards<br>Against<br>Humanity</p>
 			</div>
@@ -132,7 +133,7 @@ Basic game layout before fancyifying - START
 			 	<p></p>
 			</div>
 		</div>
-		<div class="player-cards">
+		<div id="draggablep1-2" class="player-cards">
 			<div class="front"> 		
 				<p>Cards<br>Against<br>Humanity</p>
 			</div>
@@ -140,7 +141,7 @@ Basic game layout before fancyifying - START
 			 	<p></p>
 			</div>
 		</div>
-		<div class="player-cards">
+		<div id="draggablep1-3" class="player-cards">
 			<div class="front"> 		
 				<p>Cards<br>Against<br>Humanity</p>
 			</div>
@@ -148,7 +149,7 @@ Basic game layout before fancyifying - START
 			 	<p></p>
 			</div>
 		</div>
-		<div class="player-cards">
+		<div id="draggablep1-4" class="player-cards">
 			<div class="front"> 		
 				<p>Cards<br>Against<br>Humanity</p>
 			</div>
@@ -156,7 +157,7 @@ Basic game layout before fancyifying - START
 			 	<p></p>
 			</div>
 		</div>
-		<div class="player-cards">
+		<div id="draggablep1-5" class="player-cards">
 			<div class="front"> 		
 				<p>Cards<br>Against<br>Humanity</p>
 			</div>
@@ -170,14 +171,12 @@ Basic game layout before fancyifying - START
 	-->
 
 
-
 	
 	<!-- 
 	Scripts to run the site 
 	-->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-	<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="https://cdn.rawgit.com/nnattawat/flip/v1.0.19/dist/jquery.flip.min.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>

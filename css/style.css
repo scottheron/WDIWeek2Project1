@@ -1,6 +1,6 @@
-/*
-WDI 06 - Project 1, Cards Against Humanity. style.css file.
-*/
+/*************************************************************
+* WDI 06 - Project 1, Cards Against Humanity. style.css file.*
+**************************************************************/
 
 /*
 * General site styling 
@@ -100,12 +100,6 @@ p {
 	padding: 1em;
 	margin-left: 1em;
 	color: grey;
-}
-
-#draggable { 
-	width: 150px; 
-	height: 150px; 
-	padding: 0.5em; 
 }
 
 /***********************************************************
