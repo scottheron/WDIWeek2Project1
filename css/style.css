@@ -17,6 +17,7 @@ body {
 p {
 	font-family: 'Lato', ultra-bold;
 	font-weight: 900;
+	font-size: 1.1em;
 }
 
 /***************************
@@ -84,6 +85,29 @@ p {
 	border: 1px solid white;
 }
 
+/*
+* Drop location for the white cards
+*/
+#card-drop {
+	position: fixed;
+	left: 4em;
+	top: 19em;
+	width: 8em;
+	height: 12em;
+	background-color: black;
+	border-radius: 5%;
+	border: 1px dashed grey;
+	padding: 1em;
+	margin-left: 1em;
+	color: grey;
+}
+
+#draggable { 
+	width: 150px; 
+	height: 150px; 
+	padding: 0.5em; 
+}
+
 /***********************************************************
 * player cards attributes such as size, color and position * 
 ************************************************************/
@@ -104,8 +128,8 @@ p {
 	width: 8em;
 	height: 12em;
 	border-radius: 5%;
-	padding-left: 1em;
-	margin: 1em;
+	padding: 1em;
+	margin-left: 1em;
 	color: black;
 }
 
@@ -114,7 +138,7 @@ p {
 	width: 8em;
 	height: 12em;
 	border-radius: 5%;
-	padding-left: 1em;
+	padding: 1em;
 	margin: 1em;
 	color: black;
 }
@@ -124,7 +148,8 @@ p {
 	width: 8em;
 	height: 12em;
 	border-radius: 5%;
-	padding-left: 1em;
+	padding: 1em;
 	margin: 1em;
 	color: black;
 }
+

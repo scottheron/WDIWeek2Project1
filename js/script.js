@@ -92,8 +92,6 @@ $(document).ready(function(){
 		$('#cardp1-'+j).html('<p>"'+playerTwoHandArray[j]+'"</p>');
 	}
 	
-	console.log(playerOneHandArray);
-
 	/*
 	* Clicking on the black card div generates a random number which
 	* is used to pick an entry from blackCardArray[] and displaying
@@ -117,16 +115,10 @@ $(document).ready(function(){
 	* when a white card is clicked, flip the card and display its
 	* content on the back of the card.
 	*/
-	$('.player-cards').flip()
+	$('.player-cards').flip();
 
-	/* test code
-	console.log(blackCardArray[3]);
-	console.log(whiteCardArray[0]);
-	blackCardArray[3] = blackCardArray[3].replace('_________', whiteCardArray[0]); 
-	console.log(blackCardArray[3]);
-	*/
-
-
-
+	
 
 });
+
+/*<span class="glyphicon glyphicon-ok-sign"></span>*/
