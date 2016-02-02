@@ -75,14 +75,24 @@ $(document).ready(function(){
 	* whiteCardArray and remove those cards from the white card deck
 	* using .splice
 	*/
-	
 	for (var i = 0; i < playersHands; i++) {
 		randomNum = randomNumber(whiteCardArray);
 		playerOneHandArray[i] = whiteCardArray[randomNum];
 		whiteCardArray.splice(randomNum, 1);
 		randomNum = randomNumber(whiteCardArray);
 		playerTwoHandArray[i] = whiteCardArray[randomNum];
+		whiteCardArray.splice(randomNum, 1);
 	}
+
+	/*
+	* Write the content for each card to the back of the card
+	*/
+	for (var j = 0; j < playersHands; j++) {
+		$('#cardp0-'+j).html('<p>"'+playerOneHandArray[j]+'"</p>');
+		$('#cardp1-'+j).html('<p>"'+playerTwoHandArray[j]+'"</p>');
+	}
+	
+	console.log(playerOneHandArray);
 
 	/*
 	* Clicking on the black card div generates a random number which
@@ -104,17 +114,11 @@ $(document).ready(function(){
 	});
 
 	/*
-	* flip 
+	* when a white card is clicked, flip the card and display its
+	* content on the back of the card.
 	*/
-	$('.player-cards').flip();
+	$('.player-cards').flip()
 
-
-
-	/*
-	* when a white card is clicked, display its value on the white
-	* card and then replace the underscore blank in the blackCardArray
-	* with text from the whiteCardArray
-	*/
 	/* test code
 	console.log(blackCardArray[3]);
 	console.log(whiteCardArray[0]);
@@ -124,12 +128,5 @@ $(document).ready(function(){
 
 
 
-/*jQuery call to flip the card*/
-/*
-	$("#card").flip({
-		axis: 'x',
-  		trigger: 'hover'
-	});
-*/
 
 });
