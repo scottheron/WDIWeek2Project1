@@ -5,7 +5,7 @@ WDI 06 - Project 1, Cards Against Humanity. script.js file.
 $(document).ready(function(){
 
 	/*
-	General variables for counters, random number values etc.
+	* General variables for counters, random number values etc.
 	*/
 	var randomNum;
 	var playerOneHandArray = [];
@@ -14,7 +14,8 @@ $(document).ready(function(){
 	var playerOnePlayerTwo = true;
 
 	/*
-	Black card array holding the sentence card values
+	* Black card array holding the sentence card values. This is the
+	* Black card deck.
 	*/
 	var blackCardArray = [
 		"How did I lose my virginity?",
@@ -29,7 +30,8 @@ $(document).ready(function(){
 	];
 
 	/*
-	White card array holding the answer cards
+	* White card array holding the answer cards. This is the White
+	* deck
 	*/
 	var whiteCardArray = [
 		"being on fire",

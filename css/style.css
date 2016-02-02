@@ -8,7 +8,7 @@ WDI 06 - Project 1, Cards Against Humanity. style.css file.
 body {
 	background-color: black;
 	height: 0em;
-	position: fixed;
+	
 }
 /*
 * General site styling - END
@@ -29,7 +29,7 @@ p {
 * setting up the table top -START
 */
 /*
-* setting the background attributes such image position and card
+* setting the background attributes such as image position and card
 * layout - START
 */
 #background-image {
@@ -83,7 +83,7 @@ p {
 */
 
 /*
-* the stack of white cards each player draws from to get the initial
+* the stack of black cards each player draws from to get the initial
 * play sentence - START
 */
 #black-card-back {
@@ -107,14 +107,26 @@ p {
 /*
 * player cards attributes such as size, color and position - START
 */
+#handp1 {
+	position: fixed;
+	left: -2em;
+	top: 33em;
+}
+
+#handp2 {
+	position: fixed;
+	left: 10em;
+	top: -1em;
+}
+
 .player-cards {
+	display: inline-block;
 	width: 8em;
 	height: 12em;
 	border-radius: 5%;
 	padding-left: 1em;
 	margin: 1em;
 	color: black;
-	position: fixed;
 }
 
 .player-cards .front {
@@ -125,7 +137,6 @@ p {
 	padding-left: 1em;
 	margin: 1em;
 	color: black;
-	position: fixed;
 }
 
 .player-cards .back {
@@ -136,7 +147,6 @@ p {
 	padding-left: 1em;
 	margin: 1em;
 	color: black;
-	position: fixed;
 }
 /*
 * player cards attributes such as size, color and position - END
@@ -145,7 +155,7 @@ p {
 /*
 * player one card specific attributes related to position - START
 */
-#cardp1-1 {
+/*#cardp1-1 {
 	position: fixed;
 	left: -2em;
 	top: 35em;
@@ -174,7 +184,7 @@ p {
 	position: fixed;
 	left: 53em;
 	top: -30em;
-}
+}*/
 /*
 * player one card specific attributes related to position - END
 */
@@ -182,7 +192,7 @@ p {
 /*
 * player two card specific attributes related to position - START
 */
-#cardp2-1 {
+/*#cardp2-1 {
 	position: fixed;
 	left: 10em;
 	top: -79em;
@@ -211,30 +221,10 @@ p {
 	position: fixed;
 	left: 65em;
 	top: -144em;
-}
+}*/
 /*
 * player two card specific attributes related to position - END
 */
 /*
 * setting up the table top - END
-*/
-/*
-* CSS styling for the cards
-*/
-
-/*
-#card {
-	margin: 5px;
-	width: 100px;
-	height: 100px;
-	background-color: grey;
-}
-
-.front {
-	padding: 5px;
-} 
-
-.back {
-	padding: 5px;
-}
 */
