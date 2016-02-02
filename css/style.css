@@ -23,10 +23,10 @@ p {
 /***************************
 * setting up the table top *  
 ****************************/
-/********************************************************************
-* setting the background attributes such as image position and card *
-* layout                                                            * 
-*********************************************************************/
+/*
+* setting the background attributes such as image position and card 
+* layout                                                             
+*/
 #background-image {
 	position: fixed;
 	left: 15em;
@@ -105,18 +105,28 @@ p {
 /***********************************************************
 * player cards attributes such as size, color and position * 
 ************************************************************/
+/*
+* sets the location for div containing player one's hand
+*/
 #handp1 {
 	position: fixed;
 	left: -2em;
 	top: 33em;
 }
 
+/*
+* sets the location for div containing player two's hand
+*/
 #handp2 {
 	position: fixed;
 	left: 10em;
 	top: -1em;
 }
 
+/*
+* lays out the white player cards with in the containing div
+* and sets some global attributes for the cards
+*/
 .player-cards {
 	display: inline-block;
 	width: 8em;
@@ -127,6 +137,9 @@ p {
 	color: black;
 }
 
+/*
+* specific styling and settings for the front of the cards
+*/
 .player-cards .front {
 	background-color: white;
 	width: 8em;
@@ -137,6 +150,9 @@ p {
 	color: black;
 }
 
+/*
+* specific styling and settings for the back of the cards
+*/
 .player-cards .back {
 	background-color: white;
 	width: 8em;
@@ -146,4 +162,5 @@ p {
 	margin: 1em;
 	color: black;
 }
+
 

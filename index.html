@@ -16,20 +16,17 @@ WDI 06 - Project 1, Cards Against Humanity. index.html file.
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-
-<!-- 
-Basic game layout before fancyifying - START 
--->
 	
 	<!-- 
 	The Table Top - START 
 	-->
 	<div id="background-image"></div>
 	<div id="black-card-back"></div>
+		<!-- 
+		This div displays the drop area for the cards.
+	 	-->
 	<div id="card-drop"><p>Drop<br>Cards<br>Here!</p></div>
-	<!-- 
-	The Table Top - END 
-	-->
+	
 
 	<!-- 
 	Score tracker - START 
@@ -39,28 +36,24 @@ Basic game layout before fancyifying - START
 		Player Two - <br>
 		Computer - </p>
 	</div>
-	<!-- 
-	Score tracker - END 
-	-->
+	
 
 	<!-- 
-	The black card sentence space - START 
+	The black card sentence space 
 	-->
 	<div id="sentence-space">
 		<p>Here comes some innapropriate fun!<br> <span class="fa fa-hand-o-left"></span> Click the deck to start!</p>
 	</div>
-	<!-- 
-	The black card sentence space - END 
-	-->
+	
 
 	<!-- 
 	Players hand of cards, div's for front and back of each card
 	are nested inside another div called player-cards div. This is 
-	the semantic layout needed to enact the jQuery 'flip' - START 
+	the semantic layout needed to enact the jQuery 'flip' 
 	-->	
-	<!-- 
-	Player One 
-	-->
+		<!-- 
+		Player One 
+		-->
 	<div id="handp1">
 		<div id="draggablep0-0" class="player-cards">
 			<div class="front"> 		
@@ -111,11 +104,9 @@ Basic game layout before fancyifying - START
 			</div>
 		</div>
 	</div>
-	
-
-	<!-- 
-	Player Two 
-	-->
+		<!-- 
+		Player Two 
+		-->
 	<div id="handp2">
 		<div id="draggablep1-0" class="player-cards">
 			<div class="front"> 		
@@ -166,12 +157,7 @@ Basic game layout before fancyifying - START
 			</div>
 		</div>
 	</div>
-	<!-- 
-	Players hand of cards - END 
-	-->
-
-
-	
+		
 	<!-- 
 	Scripts to run the site 
 	-->

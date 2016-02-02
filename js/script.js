@@ -5,13 +5,18 @@ WDI 06 - Project 1, Cards Against Humanity. script.js file.
 $(document).ready(function(){
 
 	/*
-	* General variables for counters, random number values etc.
+	* General variables for counters, arrays, random number values etc.
 	*/
-	var randomNum;
-	var playerOneHandArray = [];
-	var playerTwoHandArray = [];
+	var randomNum;//stores the random number from the function below.
+	var playerOneHandArray = [];//stores text of player 1's cards
+	var playerTwoHandArray = [];//stores text of player 2's cards
+	var idPlayerOneHandArray = []; //links the div id's to the text
+	var idPlayerTwoHandArray = []; //links the div id's to the text
+	var gameArray = []; //stores the player and computer submitted cards
 	var playersHands = 6; //6 cards in each players hand.
-	var playerOnePlayerTwo = true;
+	var playerOnePlayerTwo = true;//determins which player array to use
+	var draggableId;//stores the ID of the dropped card  
+	var temp//temporary variable
 
 	/*
 	* Black card array holding the sentence card values. This is the
@@ -60,6 +65,10 @@ $(document).ready(function(){
 		"scientology"
 	]
 
+	var idArray = [
+		{"draggablep0-0" : "cardp0-0"}
+	]
+
 	/*
 	* function to generate a random number between 0 and the length of
 	* any given array passed to the function
@@ -83,6 +92,7 @@ $(document).ready(function(){
 		playerTwoHandArray[i] = whiteCardArray[randomNum];
 		whiteCardArray.splice(randomNum, 1);
 	}
+	
 
 	/*
 	* Write the content for each card to the back of the card
@@ -118,17 +128,42 @@ $(document).ready(function(){
 	$('.player-cards').flip();
 	
 	/*
-	* 
+	* Makes all the white player cards draggable and droppable, the
+	* for loops cycle through each card's ID applying the draggable
+	* function.
 	*/
 	for (var j = 0; j < 2; j++) {
 		for (var i = 0; i < playersHands; i++) {
-			$('#draggablep'+j+'-'+i).draggable({
-    			containment: '#content',
-    			cursor: 'move',
-    			snap: '#content'
-  			});
+			draggableId = '#draggablep'+j+'-'+i;
+			$(draggableId).draggable({
+				stack: 'draggableId',
+				cursor: 'move'
+			});
 		}
 	}
+
+	/****************************************************************
+	* Sets up a function that handles the drop event which is       *
+	* triggered when a card is dragged to the drop space. Also sets *
+	* up the drop space as a dropable object that can accept        *
+	* the draggable cards.                                          *
+	****************************************************************/
+	/*
+	* function detects a card drop and identifies the card by it's
+	* specific ID. it then burrows down to the inner div's with '>'
+	* and access the text held in the .back class div
+	*/
+	function handleDropEvent( event, ui ) {
+  		var draggable = ui.draggable;
+  		var card = draggable.attr('id');
+  		var cardInner = $('#'+card+' > .back').text();
+  		  		
+	}
+
+	$('#card-drop').droppable( {
+    	drop: handleDropEvent
+  	} );
+
 		
 });
 
