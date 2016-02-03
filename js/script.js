@@ -17,7 +17,7 @@ $(document).ready(function(){
 	var whosTurn = true;//determins who's turn it is
 	var draggableId;//stores the ID of the dropped card  
 	var blackCardInUse;//black card in play
-	var comparisonBlackCard//used to preserve the edited card
+	var comparisonCard//what the winning player card value would be
 	var count1 = 0;//counter used for the next button
 	var bool1 = false;/*used to determine if the black card has been
 					    flipped over this turn*/
@@ -181,7 +181,6 @@ $(document).ready(function(){
   		var draggable = ui.draggable;
   		var card = draggable.attr('id');
   		var cardInner = $('#'+card+' > .back').text();
-  		console.log(cardInner);
   		if (gameArray.length != 3) {	
   			gameArray.push(cardInner); 
   			for (var i = 0; i < gameArray.length; i++){
@@ -189,13 +188,26 @@ $(document).ready(function(){
   			}
   		}
   		/*
+  		* Turn the dropped card in to a winning card for that player.
+  		* This will be the card that is checked against for a winning
+  		* senario for the player.
+  		*/
+  		tempBlackCardInUse = blackCardInUse;
+  		if (blackCardInUse.indexOf('_________') != -1) {
+  				tempBlackCardInUse = '"'+blackCardInUse+'"';
+  				tempBlackCardInUse = tempBlackCardInUse.replace('_________', gameArray[2]);
+  				comparisonCard = tempBlackCardInUse;
+  		}
+  		else {
+  			comparisonCard = '"'+tempBlackCardInUse+'"'+gameArray[2];
+  		}
+  		
+  		/*
   		* Refresh the content of the card
   		*/
   		randomNum = randomNumber(whiteCardArray);
   		var newCard = whiteCardArray[randomNum]
   		cardInner = $('#'+card+' > .back').html('<p>'+newCard+'</p>');
-  		console.log(cardInner);
-  		
   	}
 	
 	/*
@@ -218,9 +230,10 @@ $(document).ready(function(){
 	* content to the black card
 	*/
 	$('#next').on('click', function(){	
+		tempBlackCardInUse = blackCardInUse;
 		randomNum = randomNumber(tempGameArray);
 		if (count1 < 3) {
-			if (tempBlackCardInUse.indexOf('_________') != -1) {
+			if (blackCardInUse.indexOf('_________') != -1) {
   				tempBlackCardInUse = tempBlackCardInUse.replace('_________', tempGameArray[randomNum]);
   				$('#sentence-space').html('<p>"'+tempBlackCardInUse+'"</p>');
   				tempGameArray.splice(randomNum, 1);
@@ -229,7 +242,6 @@ $(document).ready(function(){
   				$('#sentence-space').html('<p>"'+tempBlackCardInUse+'"</p><br>'+tempGameArray[randomNum]);
   				tempGameArray.splice(randomNum, 1);
   			}
-  			comparisonBlackCard = tempBlackCardInUse;
   			tempBlackCardInUse = blackCardInUse;
   			count1++;
   		}	
@@ -253,15 +265,8 @@ $(document).ready(function(){
   	* player. The computer's label is always white. 
   	*/
   	$('#HECK').on('click', function(){
-  		var playerText;
-  		if (blackCardInUse.indexOf('_________') != -1) {
-  			playerText = '"'+comparisonBlackCard+'"';
-  		}
-  		else {
-  			playerText = '"'+comparisonBlackCard+'"'+gameArray[2];
-  		}
   		var winningText = $('#sentence-space').text();
-  		if (playerText === winningText && whosTurn === false) {
+  		if (comparisonCard === winningText && whosTurn === false) {
   			playerOneScore++;
   			$('#score-tracker-p1').html('<p>Player One - '+playerOneScore+'</p>');
   			whosTurn = true;
@@ -270,7 +275,7 @@ $(document).ready(function(){
 			$('#score-tracker-p2').removeClass('colorGreen');
 			$('#score-tracker-p2').addClass('colorWhite');
   		}
-  		else if (playerText === winningText && whosTurn === true) {
+  		else if (comparisonCard === winningText && whosTurn === true) {
   			playerTwoScore++;
   			$('#score-tracker-p2').html('<p>Player Two - '+playerTwoScore+'</p>');
   			whosTurn = false;
