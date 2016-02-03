@@ -44,12 +44,13 @@ p {
 #score-tracker {
 	position: fixed;
 	left: 1em;
-	top: 1em;
-	width: 28em;
-	height: 15em;
+	top: 4em;
+	width: 10em;
+	height: 8em;
 	background-color: black;
 	color: white;
 	font-size: 1.1em;
+	
 }
 
 /*
@@ -100,6 +101,40 @@ p {
 	padding: 1em;
 	margin-left: 1em;
 	color: grey;
+}
+
+/*
+* Next and select buttons
+*/
+#nextHECK {
+	position: fixed;
+	top: 30em;
+	left: 49em;
+	background-color: black;
+}
+
+#HECK {
+	background-color: black;
+	border: 1px solid white;
+	color: white;
+}
+
+#next {
+	background-color: black;
+	border: 1px solid white;
+	color: white;
+}
+
+/*
+* Reset button
+*/
+#resetButton {
+	position: fixed;
+	top: 1em;
+	left: 1em;
+	background-color: black;
+	border: 1px solid white;
+	color: white;
 }
 
 /***********************************************************

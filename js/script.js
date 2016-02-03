@@ -17,6 +17,10 @@ $(document).ready(function(){
 	var playerOnePlayerTwo = true;//determins which player array to use
 	var draggableId;//stores the ID of the dropped card  
 	var blackCardInUse;//black card in play
+	var count1 = 0;//counter used for the next button
+	var bool1 = false;/*used to determine if the black card has been
+					    flipped over this turn*/
+	var tempBlackCardInUse;//temporary holder for the black card in play
 	
 	/*
 	* Black card array holding the sentence card values. This is the
@@ -82,7 +86,8 @@ $(document).ready(function(){
 	* Initially set up the start of the game by giving each player a
 	* hand of six white cards randomly selected from the
 	* whiteCardArray and remove those cards from the white card deck
-	* using .splice
+	* using .splice. Also take two random cards for the computer to 
+	* play, add them to the gameArray and splice those off as well
 	*/
 	for (var i = 0; i < playersHands; i++) {
 		randomNum = randomNumber(whiteCardArray);
@@ -92,14 +97,19 @@ $(document).ready(function(){
 		playerTwoHandArray[i] = whiteCardArray[randomNum];
 		whiteCardArray.splice(randomNum, 1);
 	}
-	
+	for (var i = 0; i < 2; i++) {
+		randomNum = randomNumber(whiteCardArray);
+		gameArray.push('"'+whiteCardArray[randomNum]+'"');
+		whiteCardArray.splice(randomNum, 1);
+	}
+	console.log(gameArray);
 
 	/*
 	* Write the content for each card to the back of the card
 	*/
-	for (var j = 0; j < playersHands; j++) {
-		$('#cardp0-'+j).html('<p>"'+playerOneHandArray[j]+'"</p>');
-		$('#cardp1-'+j).html('<p>"'+playerTwoHandArray[j]+'"</p>');
+	for (var i = 0; i < playersHands; i++) {
+		$('#cardp0-'+i).html('<p>"'+playerOneHandArray[i]+'"</p>');
+		$('#cardp1-'+i).html('<p>"'+playerTwoHandArray[i]+'"</p>');
 	}
 	
 	/*
@@ -107,20 +117,27 @@ $(document).ready(function(){
 	* is used to pick an entry from blackCardArray[] and displaying
 	* that entry to the sentence-space div. The card is then removed
 	* from the deck using .splice. Once the last card has been played
-	* a message is displayed.
+	* a message is displayed. A check is doone to display only one
+	* black card per turn
 	*/
+		
 	$('#black-card-back').on('click', function(){
-		if(blackCardArray.length) {
-			randomNum = randomNumber(blackCardArray);
-			$('#sentence-space').html('<p>"'+blackCardArray[randomNum]+'"</p>');
-			blackCardInUse = blackCardArray[randomNum];
-			console.log(blackCardInUse);
-			blackCardArray.splice(randomNum, 1);
+		if (bool1 === false) {
+			if(blackCardArray.length) {
+				randomNum = randomNumber(blackCardArray);
+				$('#sentence-space').html('<p>"'+blackCardArray[randomNum]+'"</p>');
+				blackCardInUse = blackCardArray[randomNum];
+				tempBlackCardInUse = blackCardInUse;
+				blackCardArray.splice(randomNum, 1);
+			}
+			else {
+				$('#sentence-space').html('<p>"Aww no more cards :.("</p>');
+			}	
 		}
-		else {
-			$('#sentence-space').html('<p>"Aww no more cards :.("</p>');
-		}
+		bool1 = true;//resets back to false on reset button
 	});
+		
+	
 
 	/*
 	* when a white card is clicked, flip the card and display its
@@ -152,23 +169,15 @@ $(document).ready(function(){
 	/*
 	* function detects a card drop and identifies the card by it's
 	* specific ID. it then burrows down to the inner div's with '>'
-	* and accesses the text held in the .back class div
+	* and accesses the text held in the .back class div. the gameArray
+	* is updated with the value from the white card the player 
+	* dropped on the drop space
 	*/
 	function handleDropEvent( event, ui ) {
   		var draggable = ui.draggable;
   		var card = draggable.attr('id');
   		var cardInner = $('#'+card+' > .back').text();
-  		if (blackCardInUse.indexOf('_________') != -1) {
-  			console.log('here1');
-  			console.log(blackCardInUse);
-  			blackCardInUse = blackCardInUse.replace('_________', cardInner);
-  			$('#sentence-space').html('<p>"'+blackCardInUse+'"</p>');
-  		}
-  		else {
-  			console.log('here2');
-  			$('#sentence-space').html('<p>"'+blackCardInUse+'"</p><br>'+cardInner);
-  		}
-
+  		gameArray.push(cardInner); 
   	}
 	
 	/*
@@ -178,9 +187,29 @@ $(document).ready(function(){
     	drop: handleDropEvent
   	});
 	
-  	
-
-		
+	/*******************************************************************
+	* Listen for a button click and scroll through the gameArray to    *
+	* display each white card's text on the black card text. If it's a *
+	* blank, write the white card text in its place, if it's not then  *
+	* write the text on a new line below it                            *
+	*******************************************************************/
+	
+	$('#next').on('click', function(){	
+		if (count1 < 3) {
+			if (tempBlackCardInUse.indexOf('_________') != -1) {
+  				tempBlackCardInUse = tempBlackCardInUse.replace('_________', gameArray[count1]);
+  				$('#sentence-space').html('<p>"'+tempBlackCardInUse+'"</p>');
+  			}
+  			else {
+  				$('#sentence-space').html('<p>"'+tempBlackCardInUse+'"</p><br>'+gameArray[count1]);
+  			}
+  			tempBlackCardInUse = blackCardInUse;
+  		}	
+  		else if (count1 == 3) {
+  			count1 = 0; 
+  		}
+  		count1++;
+	});
 });
 
 /*<span class="glyphicon glyphicon-ok-sign"></span>*/

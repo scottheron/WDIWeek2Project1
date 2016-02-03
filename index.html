@@ -18,7 +18,7 @@ WDI 06 - Project 1, Cards Against Humanity. index.html file.
 <body>
 	
 	<!-- 
-	The Table Top - START 
+	The Table Top 
 	-->
 	<div id="background-image"></div>
 	<div id="black-card-back"></div>
@@ -27,9 +27,8 @@ WDI 06 - Project 1, Cards Against Humanity. index.html file.
 	 	-->
 	<div id="card-drop"><p>Drop<br>Cards<br>Here!</p></div>
 	
-
 	<!-- 
-	Score tracker - START 
+	Score tracker  
 	-->
 	<div id="score-tracker">
 		<p>Player One - <br>
@@ -37,13 +36,26 @@ WDI 06 - Project 1, Cards Against Humanity. index.html file.
 		Computer - </p>
 	</div>
 	
-
 	<!-- 
 	The black card sentence space 
 	-->
 	<div id="sentence-space">
 		<p>Here comes some innapropriate fun!<br> <span class="fa fa-hand-o-left"></span> Click the deck to start!</p>
 	</div>
+
+	<!-- 
+	Buttons to cycle through the white cards held in gameArray and
+	choose the one you want to win
+	-->
+	<div id="nextHECK" class="btn-group" role="group" aria-label="...">
+  		<button id="next" type="button" class="btn btn-default">next answer</button>
+  		<button id="HECK" type="button" class="btn btn-default">FUCK YEAH!</button>
+  	</div>
+
+  	<!-- 
+	Buttons to reset the game and scores
+	-->
+		<button id="resetButton" type="button" class="btn btn-default">start OVER!</button>
 	
 
 	<!-- 
@@ -157,7 +169,8 @@ WDI 06 - Project 1, Cards Against Humanity. index.html file.
 			</div>
 		</div>
 	</div>
-		
+
+			
 	<!-- 
 	Scripts to run the site 
 	-->
