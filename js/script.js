@@ -145,14 +145,15 @@ $(document).ready(function(){
 	*/
 	function theComputerHandSetup () {
 		outOfWhiteCards();
+		gameArray = [];
 		for (var i = 0; i < 2; i++) {
 			randomNum = randomNumber(whiteCardArray);
 			gameArray.push('"'+whiteCardArray[randomNum]+'"');
 			whiteCardArray.splice(randomNum, 1);
+			console.log('gameArray populated by the computer '+gameArray);
 		}
 	}
-	theComputerHandSetup();
-	
+		
 	/*
 	* Initially set player 1's label to green as they are the first
 	* active player. Set Player 2's label to white
@@ -218,12 +219,13 @@ $(document).ready(function(){
   		var draggable = ui.draggable;
   		var card = draggable.attr('id');
   		var cardInner = $('#'+card+' > .back').text();
-  		if (gameArray.length != 3) {	
-  			gameArray.push(cardInner); 
-  			for (var i = 0; i < gameArray.length; i++){
+  		theComputerHandSetup();
+  		gameArray[2] = cardInner;
+  		tempGameArray = [];
+  		for (var i = 0; i < gameArray.length; i++){
   				tempGameArray.push(gameArray[i]);
-  			}
   		}
+  		  		
   		/*
   		* Turn the dropped card in to a winning card for that player.
   		* This will be the card that is checked against for a winning
@@ -269,7 +271,7 @@ $(document).ready(function(){
 	*******************************************************************/
 	/*
 	* next card button cycles through the white cards writing their
-	* content to the black card
+	* content to the black card in a random order each time.
 	*/
 	$('#next').on('click', function(){	
 		tempBlackCardInUse = blackCardInUse;
@@ -344,6 +346,9 @@ $(document).ready(function(){
 				$('#score-tracker-p2').addClass('colorWhite');
 			}
   		}
+  		/*reset back to false to allow a new black card to be
+  		flipped*/
+  		bool1 = false; 
   	});
 });
 
