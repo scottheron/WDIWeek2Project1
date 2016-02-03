@@ -218,12 +218,25 @@ $(document).ready(function(){
   			for (var i = 0; i < gameArray.length; i++){
   				tempGameArray.push(gameArray[i]);
   			}
-  		}
+  		} 
   	});
 
   	/*
   	* FUCK YEAH button selects a winner and updates the score
   	*/
-  	
+  	$('#HECK').on('click', function(){
+  		//if the text in the div is equal to the gameArray[2] text then player gets a point
+  		var playerText = '"'+blackCardInUse+'"'+gameArray[2];
+  		console.log(playerText);
+  		var winningText = $('#sentence-space').text();
+  		console.log(winningText);
+  		if (playerText === winningText) {
+  			console.log('Player is a WINNER');
+  		}
+  		else {
+  			console.log('Computer is a WINNER');
+  		}
+
+  	});
 });
 
