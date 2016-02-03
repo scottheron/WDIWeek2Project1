@@ -130,9 +130,7 @@ $(document).ready(function(){
 		}
 		bool1 = true;//resets back to false on reset button
 	});
-		
 	
-
 	/*
 	* when a white card is clicked, flip the card and display its
 	* content on the back of the card.
@@ -173,8 +171,12 @@ $(document).ready(function(){
   		var cardInner = $('#'+card+' > .back').text();
   		if (gameArray.length != 3) {	
   			gameArray.push(cardInner); 
-  			tempGameArray = gameArray;
+  			// tempGameArray = gameArray;
+  			for (var i = 0; i < gameArray.length; i++){
+  				tempGameArray.push(gameArray[i]);
+  			}
   		}
+  		
   	}
 	
 	/*
@@ -213,7 +215,9 @@ $(document).ready(function(){
   		}	
   		if (count1 == 3) {
   			count1 = 0; 
-  			tempGameArray = gameArray;
+  			for (var i = 0; i < gameArray.length; i++){
+  				tempGameArray.push(gameArray[i]);
+  			}
   		}
   	});
 
