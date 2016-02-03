@@ -27,6 +27,7 @@ $(document).ready(function(){
 	var playerOneScore = 0;//player 1 score
 	var playerTwoScore = 0;//player 2 score
 	var computerScore = 0;//computer score
+	var cardDropped = true;//track when a card has already been dropped
 	
 	/*
 	* Black card array holding the sentence card values. This is the
@@ -82,6 +83,28 @@ $(document).ready(function(){
 	shuffleWhite();
 	
 	/*
+	* Function to set player 2 as the active player
+	*/
+	function setPlayerTwoActive () {
+		$('#score-tracker-p2').removeClass('colorWhite');
+  		$('#score-tracker-p2').addClass('colorGreen');
+		$('#score-tracker-p1').removeClass('colorGreen');
+		$('#score-tracker-p1').addClass('colorWhite');
+		
+	}
+
+	/*
+	* Function to set player 1 as the active player
+	*/
+	function setPlayerOneActive () {
+		$('#score-tracker-p1').removeClass('colorWhite');
+  		$('#score-tracker-p1').addClass('colorGreen');
+		$('#score-tracker-p2').removeClass('colorGreen');
+		$('#score-tracker-p2').addClass('colorWhite');
+		
+	}
+
+	/*
 	* function to check for the white card deck status, if it's low
 	* on cards, refresh the deck and the cards in the players hands.
 	*/
@@ -119,7 +142,6 @@ $(document).ready(function(){
 	* using .splice. Check the deck isnt too low on cards
 	*/
 	function theHandSetup () {
-		outOfWhiteCards();
 		for (var i = 0; i < playersHands; i++) {
 			randomNum = randomNumber(whiteCardArray);
 			playerOneHandArray[i] = whiteCardArray[randomNum];
@@ -150,7 +172,6 @@ $(document).ready(function(){
 			randomNum = randomNumber(whiteCardArray);
 			gameArray.push('"'+whiteCardArray[randomNum]+'"');
 			whiteCardArray.splice(randomNum, 1);
-			console.log('gameArray populated by the computer '+gameArray);
 		}
 	}
 		
@@ -170,15 +191,19 @@ $(document).ready(function(){
 	* black card per turn. If the cards run out the deck is refreshed.
 	*/
 	$('#black-card-back').on('click', function(){
-		outOfBlackCards();
-		if (bool1 === false) {
-			randomNum = randomNumber(blackCardArray);
-			$('#sentence-space').html('<p>"'+blackCardArray[randomNum]+'"</p>');
-			blackCardInUse = blackCardArray[randomNum];
-			tempBlackCardInUse = blackCardInUse;
-			blackCardArray.splice(randomNum, 1);
+		if (cardDropped === true) {
+			outOfBlackCards();
+			if (bool1 === false) {
+				console.log('here3');
+				randomNum = randomNumber(blackCardArray);
+				$('#sentence-space').html('<p>"'+blackCardArray[randomNum]+'"</p>');
+				blackCardInUse = blackCardArray[randomNum];
+				tempBlackCardInUse = blackCardInUse;
+				blackCardArray.splice(randomNum, 1);
+			}
+			bool1 = true;//resets back to false on start OVER! button
+			cardDropped = false;
 		}
-		bool1 = true;//resets back to false on start OVER! button
 	});
 	
 	/*
@@ -216,42 +241,45 @@ $(document).ready(function(){
 	* dropped on the drop space
 	*/
 	function handleDropEvent( event, ui ) {
-  		var draggable = ui.draggable;
-  		var card = draggable.attr('id');
-  		var cardInner = $('#'+card+' > .back').text();
-  		theComputerHandSetup();
-  		gameArray[2] = cardInner;
-  		tempGameArray = [];
-  		for (var i = 0; i < gameArray.length; i++){
+  		if (cardDropped === false) {
+  			var draggable = ui.draggable;
+  			var card = draggable.attr('id');
+  			var cardInner = $('#'+card+' > .back').text();
+  			theComputerHandSetup();
+  			gameArray[2] = cardInner;
+  			tempGameArray = [];
+  			for (var i = 0; i < gameArray.length; i++){
   				tempGameArray.push(gameArray[i]);
-  		}
+  			}
   		  		
-  		/*
-  		* Turn the dropped card in to a winning card for that player.
-  		* This will be the card that is checked against for a winning
-  		* senario for the player.
-  		*/
-  		tempBlackCardInUse = blackCardInUse;
-  		if (blackCardInUse.indexOf('_________') != -1) {
+  			/*
+  			* Turn the dropped card in to a winning card for that
+  			* player. This will be the card that is checked against 
+  			* for a winning senario for the player.
+  			*/
+  			tempBlackCardInUse = blackCardInUse;
+  			if (blackCardInUse.indexOf('_________') != -1) {
   				tempBlackCardInUse = '"'+blackCardInUse+'"';
   				tempBlackCardInUse = tempBlackCardInUse.replace('_________', gameArray[2]);
   				comparisonCard = tempBlackCardInUse;
-  		}
-  		else {
-  			comparisonCard = '"'+tempBlackCardInUse+'"'+gameArray[2];
-  		}
+  			}
+  			else {
+  				comparisonCard = '"'+tempBlackCardInUse+'"'+gameArray[2];
+  			}
   		
-  		/*
-  		* Refresh the content of the card with another card from 
-  		* the white deck and remove that card from the deck. If the 
-  		* deck has fewer than 14 cards (12 for the two players and 2
-  		* for the computer) then add back in all the cards.
-  		*/
-  		outOfWhiteCards();
-  		randomNum = randomNumber(whiteCardArray);
-  		var newCard = whiteCardArray[randomNum]
-  		cardInner = $('#'+card+' > .back').html('<p>'+newCard+'</p>');
-  		whiteCardArray.splice(randomNum, 1);
+  			/*
+  			* Refresh the content of the card with another card from 
+  			* the white deck and remove that card from the deck. If the 
+  			* deck has fewer than 14 cards (12 for the two players and 2
+  			* for the computer) then add back in all the cards.
+  			*/
+  			outOfWhiteCards();
+  			randomNum = randomNumber(whiteCardArray);
+  			var newCard = whiteCardArray[randomNum]
+  			cardInner = $('#'+card+' > .back').html('<p>'+newCard+'</p>');
+  			whiteCardArray.splice(randomNum, 1);
+  			cardDropped = true;
+  		}
   	}
 	
 	/*
@@ -259,7 +287,7 @@ $(document).ready(function(){
 	*/
 	$('#card-drop').droppable({
     	drop: handleDropEvent
-  	});
+    });
 	
 	/*******************************************************************
 	* Listen for a button click and scroll through the gameArray to    *
@@ -314,41 +342,52 @@ $(document).ready(function(){
   			playerOneScore++;
   			$('#score-tracker-p1').html('<p>Player One - '+playerOneScore+'</p>');
   			whosTurn = true;
-  			$('#score-tracker-p1').removeClass('colorWhite');
-  			$('#score-tracker-p1').addClass('colorGreen');
-			$('#score-tracker-p2').removeClass('colorGreen');
-			$('#score-tracker-p2').addClass('colorWhite');
+  			setPlayerOneActive();
   		}
   		else if (comparisonCard === winningText && whosTurn === true) {
   			playerTwoScore++;
   			$('#score-tracker-p2').html('<p>Player Two - '+playerTwoScore+'</p>');
   			whosTurn = false;
-  			$('#score-tracker-p2').removeClass('colorWhite');
-  			$('#score-tracker-p2').addClass('colorGreen');
-			$('#score-tracker-p1').removeClass('colorGreen');
-			$('#score-tracker-p1').addClass('colorWhite');
+  			setPlayerTwoActive();
   		}
   		else {
   			computerScore++;
   			$('#score-tracker-c').html('<p>Computer - '+computerScore+'</p>');
   			if (whosTurn === true) {
   				whosTurn = false;
-  				$('#score-tracker-p2').removeClass('colorWhite');
-  				$('#score-tracker-p2').addClass('colorGreen');
-				$('#score-tracker-p1').removeClass('colorGreen');
-				$('#score-tracker-p1').addClass('colorWhite');
+  				setPlayerTwoActive();
   			}
   			else if (whosTurn === false) {
   				whosTurn = true;
-  				$('#score-tracker-p1').removeClass('colorWhite');
-  				$('#score-tracker-p1').addClass('colorGreen');
-				$('#score-tracker-p2').removeClass('colorGreen');
-				$('#score-tracker-p2').addClass('colorWhite');
+  				setPlayerOneActive();
 			}
   		}
   		/*reset back to false to allow a new black card to be
   		flipped*/
   		bool1 = false; 
   	});
+
+	/*
+	* start over button
+	*/
+	$('#resetButton').on('click', function(){
+		console.log('here');
+		shuffleWhite();
+		shuffleBlack();
+		theHandSetup();
+		playerOnePlayerTwo = true;
+		whosTurn = true;
+		count1 = 0;
+		cardDropped = true;
+		bool1 = false;
+		playerOneScore = 0;
+		$('#score-tracker-p1').html('<p>Player One - '+playerOneScore+'</p>');
+		playerTwoScore = 0;
+		$('#score-tracker-p2').html('<p>Player Two - '+playerTwoScore+'</p>');
+		computerScore = 0;
+		$('#score-tracker-c').html('<p>Computer - '+computerScore+'</p>');
+		setPlayerOneActive();
+		$('#sentence-space').html('<p>Here comes some innapropriate fun!<br> <span class="fa fa-hand-o-left"></span> Click the deck to start!</p>');
+	});
 });
 
