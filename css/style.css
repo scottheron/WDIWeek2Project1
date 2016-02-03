@@ -42,17 +42,23 @@ p {
 * Score tracker 
 */
 
+.colorGreen {
+	color: green;
+}
+
+.colorWhite {
+	color: white;
+}
+
 #score-tracker-p1 {
 	position: fixed;
 	left: 1em;
 	top: 5em;
-	color: white; 
 }
 #score-tracker-p2 {
 	position: fixed;
 	left: 1em;
 	top: 7em;
-	color: white; 
 }
 #score-tracker-c {
 	position: fixed;

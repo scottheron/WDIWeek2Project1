@@ -17,6 +17,7 @@ $(document).ready(function(){
 	var whosTurn = true;//determins who's turn it is
 	var draggableId;//stores the ID of the dropped card  
 	var blackCardInUse;//black card in play
+	var comparisonBlackCard//used to preserve the edited card
 	var count1 = 0;//counter used for the next button
 	var bool1 = false;/*used to determine if the black card has been
 					    flipped over this turn*/
@@ -38,7 +39,7 @@ $(document).ready(function(){
 		"What's the next Happy Meal toy?",
 		"Here is the church, Here is the people, Open the doors, and there is _________.",
 		"It's a pitty that kids these days are all getting involved with _________.",
-		"Today on Maury: 'Help! My son is'<br>_________"
+		"Today on Maury: 'Help! My son is _________"
 	];
 
 	/*
@@ -109,6 +110,13 @@ $(document).ready(function(){
 		$('#cardp0-'+i).html('<p>"'+playerOneHandArray[i]+'"</p>');
 		$('#cardp1-'+i).html('<p>"'+playerTwoHandArray[i]+'"</p>');
 	}
+
+	/*
+	* Initially set player 1's label to green as they are the first
+	* active player. Set Player 2's label to white
+	*/
+	$('#score-tracker-p1').addClass('colorGreen');
+	$('#score-tracker-p2').addClass('colorWhite');
 	
 	/*
 	* Clicking on the black card div generates a random number which
@@ -173,13 +181,20 @@ $(document).ready(function(){
   		var draggable = ui.draggable;
   		var card = draggable.attr('id');
   		var cardInner = $('#'+card+' > .back').text();
+  		console.log(cardInner);
   		if (gameArray.length != 3) {	
   			gameArray.push(cardInner); 
-  			// tempGameArray = gameArray;
   			for (var i = 0; i < gameArray.length; i++){
   				tempGameArray.push(gameArray[i]);
   			}
   		}
+  		/*
+  		* Refresh the content of the card
+  		*/
+  		randomNum = randomNumber(whiteCardArray);
+  		var newCard = whiteCardArray[randomNum]
+  		cardInner = $('#'+card+' > .back').html('<p>'+newCard+'</p>');
+  		console.log(cardInner);
   		
   	}
 	
@@ -214,6 +229,7 @@ $(document).ready(function(){
   				$('#sentence-space').html('<p>"'+tempBlackCardInUse+'"</p><br>'+tempGameArray[randomNum]);
   				tempGameArray.splice(randomNum, 1);
   			}
+  			comparisonBlackCard = tempBlackCardInUse;
   			tempBlackCardInUse = blackCardInUse;
   			count1++;
   		}	
@@ -226,36 +242,66 @@ $(document).ready(function(){
   	});
 
   	/*
-  	* FUCK YEAH button selects a winner and updates the score
+  	* FUCK YEAH button selects a winner and updates the score board.
+  	* The winner is determined by matching the text on the chosen
+  	* white card (reading the value on the sentence space) and 
+  	* comparing that string value to the 3rd gameArray entry which 
+  	* is always the players chosen card. The black cards sentence
+  	* is added to the string value of the players white card string
+  	* to make the comparison easier. also the players label is set 
+  	* to either green or white depending on if they are the active
+  	* player. The computer's label is always white. 
   	*/
   	$('#HECK').on('click', function(){
-  		var playerText = '"'+blackCardInUse+'"'+gameArray[2];
+  		var playerText;
+  		if (blackCardInUse.indexOf('_________') != -1) {
+  			playerText = '"'+comparisonBlackCard+'"';
+  		}
+  		else {
+  			playerText = '"'+comparisonBlackCard+'"'+gameArray[2];
+  		}
   		var winningText = $('#sentence-space').text();
-  		
-  		if (playerText === winningText && whosTurn === true) {
-  			console.log('whos turn '+whosTurn);
+  		if (playerText === winningText && whosTurn === false) {
   			playerOneScore++;
   			$('#score-tracker-p1').html('<p>Player One - '+playerOneScore+'</p>');
-  			whosTurn = false;
+  			whosTurn = true;
+  			$('#score-tracker-p1').removeClass('colorWhite');
+  			$('#score-tracker-p1').addClass('colorGreen');
+			$('#score-tracker-p2').removeClass('colorGreen');
+			$('#score-tracker-p2').addClass('colorWhite');
   		}
-  		else if (playerText === winningText && whosTurn === false) {
-  			console.log('whos turn '+whosTurn);
+  		else if (playerText === winningText && whosTurn === true) {
   			playerTwoScore++;
   			$('#score-tracker-p2').html('<p>Player Two - '+playerTwoScore+'</p>');
-  			whosTurn = true;
+  			whosTurn = false;
+  			$('#score-tracker-p2').removeClass('colorWhite');
+  			$('#score-tracker-p2').addClass('colorGreen');
+			$('#score-tracker-p1').removeClass('colorGreen');
+			$('#score-tracker-p1').addClass('colorWhite');
   		}
   		else {
   			computerScore++;
   			$('#score-tracker-c').html('<p>Computer - '+computerScore+'</p>');
   			if (whosTurn === true) {
-  				console.log('whos turn '+whosTurn);
   				whosTurn = false;
+  				$('#score-tracker-p2').removeClass('colorWhite');
+  				$('#score-tracker-p2').addClass('colorGreen');
+				$('#score-tracker-p1').removeClass('colorGreen');
+				$('#score-tracker-p1').addClass('colorWhite');
   			}
   			else if (whosTurn === false) {
-  				console.log('whos turn '+whosTurn);
   				whosTurn = true;
+  				$('#score-tracker-p1').removeClass('colorWhite');
+  				$('#score-tracker-p1').addClass('colorGreen');
+				$('#score-tracker-p2').removeClass('colorGreen');
+				$('#score-tracker-p2').addClass('colorWhite');
 			}
   		}
   	});
+
+	/*
+	* update the cards
+	*/
+
 });
 
