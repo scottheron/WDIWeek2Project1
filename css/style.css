@@ -53,17 +53,17 @@ p {
 #score-tracker-p1 {
 	position: fixed;
 	left: 1em;
-	top: 5em;
+	top: 33em;
 }
 #score-tracker-p2 {
 	position: fixed;
 	left: 1em;
-	top: 7em;
+	top: 4em;
 }
 #score-tracker-c {
 	position: fixed;
 	left: 1em;
-	top: 9em;
+	top: 12em;
 	color: white; 
 }
 

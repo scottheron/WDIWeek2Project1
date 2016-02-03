@@ -28,7 +28,23 @@ $(document).ready(function(){
 	var playerTwoScore = 0;//player 2 score
 	var computerScore = 0;//computer score
 	var cardDropped = true;//track when a card has already been dropped
+	var winnerChosen = false;//tracks if a winning card has been chosen
+
+	/*
+	* sweetAlert!! Welcome to the game
+	*/
+	swal({
+  		title: "Welcome to Cards Against Humanity!",
+  		text: "MUCH WARNINGS, MANY NSFW!",
+  		type: "warning",
+  		showCancelButton: false,
+  		confirmButtonColor: "#DD6B55",
+  		confirmButtonText: "I'm an adult DAMMIT!",
+  		closeOnConfirm: true,
+  		html: false
+		});
 	
+
 	/*
 	* Black card array holding the sentence card values. This is the
 	* Black card deck.
@@ -194,16 +210,41 @@ $(document).ready(function(){
 		if (cardDropped === true) {
 			outOfBlackCards();
 			if (bool1 === false) {
-				console.log('here3');
 				randomNum = randomNumber(blackCardArray);
 				$('#sentence-space').html('<p>"'+blackCardArray[randomNum]+'"</p>');
 				blackCardInUse = blackCardArray[randomNum];
 				tempBlackCardInUse = blackCardInUse;
 				blackCardArray.splice(randomNum, 1);
+				bool1 = true;/*resets back to false on start OVER!
+				               button*/
+				winnerChosen = false;
 			}
-			bool1 = true;//resets back to false on start OVER! button
+			else {
+  				swal({
+  					title: "... ... Rosebud ... .. .. has anyone seen Citizen Kane?!?",
+  					text: "You can only flip off I MEAN flip OVER one black card at a time.",
+  					type: "warning",
+  					showCancelButton: false,
+  					confirmButtonColor: "#DD6B55",
+  					confirmButtonText: "FUCK OFF!",
+  					closeOnConfirm: true,
+  					html: false
+				});
+  			}
 			cardDropped = false;
 		}
+		else {
+  			swal({
+  				title: "Who's your Daddy, and what does he do?.. I AM DETECTIVE JOHN KIMBLE!!1!",
+  				text: "You need to drop a load.. I MEAN a white card first.",
+  				type: "warning",
+  				showCancelButton: false,
+  				confirmButtonColor: "#DD6B55",
+  				confirmButtonText: "FUCK OFF!",
+  				closeOnConfirm: true,
+  				html: false
+			});
+  		}
 	});
 	
 	/*
@@ -280,6 +321,18 @@ $(document).ready(function(){
   			whiteCardArray.splice(randomNum, 1);
   			cardDropped = true;
   		}
+  		else {
+  			swal({
+  				title: "Uh uh uh, you didn't say the magic word!... ... ... IT'S FROM JURASSIC PARK MORON!",
+  				text: "You can only drop one card at a time... *mumbles under breath*'idiot'.",
+  				type: "warning",
+  				showCancelButton: false,
+  				confirmButtonColor: "#DD6B55",
+  				confirmButtonText: "FUCK OFF!",
+  				closeOnConfirm: true,
+  				html: false
+			});
+  		}
   	}
 	
 	/*
@@ -337,38 +390,53 @@ $(document).ready(function(){
   	* player. The computer's label is always white. 
   	*/
   	$('#HECK').on('click', function(){
-  		var winningText = $('#sentence-space').text();
-  		if (comparisonCard === winningText && whosTurn === false) {
-  			playerOneScore++;
-  			$('#score-tracker-p1').html('<p>Player One - '+playerOneScore+'</p>');
-  			whosTurn = true;
-  			setPlayerOneActive();
-  		}
-  		else if (comparisonCard === winningText && whosTurn === true) {
-  			playerTwoScore++;
-  			$('#score-tracker-p2').html('<p>Player Two - '+playerTwoScore+'</p>');
-  			whosTurn = false;
-  			setPlayerTwoActive();
-  		}
-  		else {
-  			computerScore++;
-  			$('#score-tracker-c').html('<p>Computer - '+computerScore+'</p>');
-  			if (whosTurn === true) {
+  		if (winnerChosen === false) {
+  			var winningText = $('#sentence-space').text();
+  			if (comparisonCard === winningText && whosTurn === false) {
+  				playerOneScore++;
+  				$('#score-tracker-p1').html('<p>Player One - '+playerOneScore+'</p>');
+  				whosTurn = true;
+  				setPlayerOneActive();
+  			}
+  			else if (comparisonCard === winningText && whosTurn === true) {
+  				playerTwoScore++;
+  				$('#score-tracker-p2').html('<p>Player Two - '+playerTwoScore+'</p>');
   				whosTurn = false;
   				setPlayerTwoActive();
   			}
-  			else if (whosTurn === false) {
-  				whosTurn = true;
-  				setPlayerOneActive();
-			}
+  			else {
+  				computerScore++;
+  				$('#score-tracker-c').html('<p>Computer - '+computerScore+'</p>');
+  				if (whosTurn === true) {
+  					whosTurn = false;
+  					setPlayerTwoActive();
+  				}
+  				else if (whosTurn === false) {
+  					whosTurn = true;
+  					setPlayerOneActive();
+				}
+  			}
+  			/*reset back to false to allow a new black card to be
+  			flipped*/
+  			bool1 = false; 
+  			winnerChosen = true;
   		}
-  		/*reset back to false to allow a new black card to be
-  		flipped*/
-  		bool1 = false; 
+  		else {
+  			swal({
+  				title: "We are no longer the knights who say ni! We are now the knights who say ekki-ekki-ekki-pitang-zoom-boing!",
+  				text: "You have already chosen a winner.. RTFM!",
+  				type: "warning",
+  				showCancelButton: false,
+  				confirmButtonColor: "#DD6B55",
+  				confirmButtonText: "FUCK OFF!",
+  				closeOnConfirm: true,
+  				html: false
+			});
+  		}	
   	});
 
 	/*
-	* start over button
+	* When the start OVER! button is clicked the state of the 
 	*/
 	$('#resetButton').on('click', function(){
 		console.log('here');
