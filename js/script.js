@@ -282,9 +282,13 @@ $(document).ready(function(){
 	* dropped on the drop space
 	*/
 	function handleDropEvent( event, ui ) {
+  		var draggable = ui.draggable;
+  		var card = draggable.attr('id');
+  		$('#'+card+'').addClass('noflip');
+  		$('.noflip').flip('toggle');
+  		$('#'+card+'').removeClass('noflip');
   		if (cardDropped === false) {
-  			var draggable = ui.draggable;
-  			var card = draggable.attr('id');
+  			
   			var cardInner = $('#'+card+' > .back').text();
   			theComputerHandSetup();
   			gameArray[2] = cardInner;
@@ -335,6 +339,29 @@ $(document).ready(function(){
   		}
   	}
 	
+
+	/*
+	*turning the player one div into a droppable zone 
+	*/
+	function baseDropEvent( event, ui ) {
+  		var draggable = ui.draggable;
+  		var card = draggable.attr('id');
+  		$('#'+card+'').addClass('noflip');
+  		$('.noflip').flip('toggle');
+  		$('#'+card+'').removeClass('noflip');
+  	}
+
+  	/*
+	*turning the player two div into a droppable zone 
+	*/
+	function topDropEvent( event, ui ) {
+  		var draggable = ui.draggable;
+  		var card = draggable.attr('id');
+  		$('#'+card+'').addClass('noflip');
+  		$('.noflip').flip('toggle');
+  		$('#'+card+'').removeClass('noflip');
+  	}
+
 	/*
 	* creates drop space
 	*/
@@ -342,6 +369,14 @@ $(document).ready(function(){
     	drop: handleDropEvent
     });
 	
+	$('#handp1').droppable({
+    	drop: baseDropEvent
+    });
+
+    $('#handp2').droppable({
+    	drop: topDropEvent
+    });
+
 	/*******************************************************************
 	* Listen for a button click and scroll through the gameArray to    *
 	* display each white card's text on the black card text. If it's a *
