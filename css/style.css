@@ -33,7 +33,7 @@ p {
 	top: 20em;
 	width: 30em;
 	height: 15em;
-	background-image: url('file:///home/scott/code/WDIWeek2Project1/images/social-3f4a4c57.png');
+	background-image: url('../images/social-3f4a4c57.png');
 	background-size: contain;
 	background-repeat: no-repeat;
 }
@@ -93,7 +93,7 @@ p {
 	top: 17em;
 	width: 10em;
 	height: 15em;
-	background-image: url('file:///home/scott/code/WDIWeek2Project1/images/social-3f4a4c57.png');
+	background-image: url('../images/social-3f4a4c57.png');
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-color: black;
