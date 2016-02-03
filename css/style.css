@@ -41,17 +41,26 @@ p {
 /*
 * Score tracker 
 */
-#score-tracker {
+
+#score-tracker-p1 {
 	position: fixed;
 	left: 1em;
-	top: 4em;
-	width: 10em;
-	height: 8em;
-	background-color: black;
-	color: white;
-	font-size: 1.1em;
-	
+	top: 5em;
+	color: white; 
 }
+#score-tracker-p2 {
+	position: fixed;
+	left: 1em;
+	top: 7em;
+	color: white; 
+}
+#score-tracker-c {
+	position: fixed;
+	left: 1em;
+	top: 9em;
+	color: white; 
+}
+
 
 /*
 * The black card sentence space 

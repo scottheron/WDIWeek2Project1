@@ -14,12 +14,16 @@ $(document).ready(function(){
 	var tempGameArray =[];//temp array to hold gameArray for popping
 	var playersHands = 6; //6 cards in each players hand.
 	var playerOnePlayerTwo = true;//determins which player array to use
+	var whosTurn = true;//determins who's turn it is
 	var draggableId;//stores the ID of the dropped card  
 	var blackCardInUse;//black card in play
 	var count1 = 0;//counter used for the next button
 	var bool1 = false;/*used to determine if the black card has been
 					    flipped over this turn*/
 	var tempBlackCardInUse;//temporary holder for the black card in play
+	var playerOneScore = 0;//player 1 score
+	var playerTwoScore = 0;//player 2 score
+	var computerScore = 0;//computer score
 	
 	/*
 	* Black card array holding the sentence card values. This is the
@@ -225,18 +229,33 @@ $(document).ready(function(){
   	* FUCK YEAH button selects a winner and updates the score
   	*/
   	$('#HECK').on('click', function(){
-  		//if the text in the div is equal to the gameArray[2] text then player gets a point
   		var playerText = '"'+blackCardInUse+'"'+gameArray[2];
-  		console.log(playerText);
   		var winningText = $('#sentence-space').text();
-  		console.log(winningText);
-  		if (playerText === winningText) {
-  			console.log('Player is a WINNER');
+  		
+  		if (playerText === winningText && whosTurn === true) {
+  			console.log('whos turn '+whosTurn);
+  			playerOneScore++;
+  			$('#score-tracker-p1').html('<p>Player One - '+playerOneScore+'</p>');
+  			whosTurn = false;
+  		}
+  		else if (playerText === winningText && whosTurn === false) {
+  			console.log('whos turn '+whosTurn);
+  			playerTwoScore++;
+  			$('#score-tracker-p2').html('<p>Player Two - '+playerTwoScore+'</p>');
+  			whosTurn = true;
   		}
   		else {
-  			console.log('Computer is a WINNER');
+  			computerScore++;
+  			$('#score-tracker-c').html('<p>Computer - '+computerScore+'</p>');
+  			if (whosTurn === true) {
+  				console.log('whos turn '+whosTurn);
+  				whosTurn = false;
+  			}
+  			else if (whosTurn === false) {
+  				console.log('whos turn '+whosTurn);
+  				whosTurn = true;
+			}
   		}
-
   	});
 });
 
