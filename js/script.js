@@ -10,9 +10,8 @@ $(document).ready(function(){
 	var randomNum;//stores the random number from the function below.
 	var playerOneHandArray = [];//stores text of player 1's cards
 	var playerTwoHandArray = [];//stores text of player 2's cards
-	var idPlayerOneHandArray = []; //links the div id's to the text
-	var idPlayerTwoHandArray = []; //links the div id's to the text
 	var gameArray = []; //stores the player and computer submitted cards
+	var tempGameArray =[];//temp array to hold gameArray for popping
 	var playersHands = 6; //6 cards in each players hand.
 	var playerOnePlayerTwo = true;//determins which player array to use
 	var draggableId;//stores the ID of the dropped card  
@@ -69,10 +68,6 @@ $(document).ready(function(){
 		"scientology"
 	]
 
-	var idArray = [
-		{"draggablep0-0" : "cardp0-0"}
-	]
-
 	/*
 	* function to generate a random number between 0 and the length of
 	* any given array passed to the function
@@ -102,8 +97,7 @@ $(document).ready(function(){
 		gameArray.push('"'+whiteCardArray[randomNum]+'"');
 		whiteCardArray.splice(randomNum, 1);
 	}
-	console.log(gameArray);
-
+	
 	/*
 	* Write the content for each card to the back of the card
 	*/
@@ -177,7 +171,10 @@ $(document).ready(function(){
   		var draggable = ui.draggable;
   		var card = draggable.attr('id');
   		var cardInner = $('#'+card+' > .back').text();
-  		gameArray.push(cardInner); 
+  		if (gameArray.length != 3) {	
+  			gameArray.push(cardInner); 
+  			tempGameArray = gameArray;
+  		}
   	}
 	
 	/*
@@ -191,25 +188,38 @@ $(document).ready(function(){
 	* Listen for a button click and scroll through the gameArray to    *
 	* display each white card's text on the black card text. If it's a *
 	* blank, write the white card text in its place, if it's not then  *
-	* write the text on a new line below it                            *
+	* write the text on a new line below it. Once the player selects a *
+	* winning card they click the FUCK YEAH button and the winner,     *
+	* either a player or computer, has their score updated             *
 	*******************************************************************/
-	
+	/*
+	* next card button cycles through the white cards writing their
+	* content to the black card
+	*/
 	$('#next').on('click', function(){	
+		randomNum = randomNumber(tempGameArray);
 		if (count1 < 3) {
 			if (tempBlackCardInUse.indexOf('_________') != -1) {
-  				tempBlackCardInUse = tempBlackCardInUse.replace('_________', gameArray[count1]);
+  				tempBlackCardInUse = tempBlackCardInUse.replace('_________', tempGameArray[randomNum]);
   				$('#sentence-space').html('<p>"'+tempBlackCardInUse+'"</p>');
+  				tempGameArray.splice(randomNum, 1);
   			}
   			else {
-  				$('#sentence-space').html('<p>"'+tempBlackCardInUse+'"</p><br>'+gameArray[count1]);
+  				$('#sentence-space').html('<p>"'+tempBlackCardInUse+'"</p><br>'+tempGameArray[randomNum]);
+  				tempGameArray.splice(randomNum, 1);
   			}
   			tempBlackCardInUse = blackCardInUse;
+  			count1++;
   		}	
-  		else if (count1 == 3) {
+  		if (count1 == 3) {
   			count1 = 0; 
+  			tempGameArray = gameArray;
   		}
-  		count1++;
-	});
+  	});
+
+  	/*
+  	* FUCK YEAH button selects a winner and updates the score
+  	*/
+  	
 });
 
-/*<span class="glyphicon glyphicon-ok-sign"></span>*/
