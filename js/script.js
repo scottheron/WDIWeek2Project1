@@ -7,6 +7,8 @@ $(document).ready(function(){
 	/*******************************************************************
 	* General variables for counters, arrays, random number values etc.*
 	*******************************************************************/
+	var whiteCardArray = [];//holds the white card deck
+	var blackCardArray = [];//holds the black card deck
 	var randomNum;//stores the random number from the function below.
 	var playerOneHandArray = [];//stores text of player 1's cards
 	var playerTwoHandArray = [];//stores text of player 2's cards
@@ -30,7 +32,8 @@ $(document).ready(function(){
 	* Black card array holding the sentence card values. This is the
 	* Black card deck.
 	*/
-	var blackCardArray = [
+	function shuffleBlack () {
+		blackCardArray = [
 		"How did I lose my virginity?",
 		"Why can't I sleep at night?",
 		"What's that smell?",
@@ -40,13 +43,16 @@ $(document).ready(function(){
 		"Here is the church, Here is the people, Open the doors, and there is _________.",
 		"It's a pitty that kids these days are all getting involved with _________.",
 		"Today on Maury: 'Help! My son is _________"
-	];
+		];
+	}
+	shuffleBlack();
 
 	/*
 	* White card array holding the answer cards. This is the White
 	* deck
 	*/
-	var whiteCardArray = [
+	function shuffleWhite () {
+		whiteCardArray = [
 		"being on fire",
 		"racism",
 		"old-people smell",
@@ -71,7 +77,31 @@ $(document).ready(function(){
 		"my humps",
 		"the Tempur-Pedic Swedish Sleep System",
 		"scientology"
-	]
+		];
+	}
+	shuffleWhite();
+	
+	/*
+	* function to check for the white card deck status, if it's low
+	* on cards, refresh the deck and the cards in the players hands.
+	*/
+	function outOfWhiteCards () {
+  		if (whiteCardArray.length < 14) {
+  			shuffleWhite();
+  			theHandSetup();
+  		}
+  	}
+
+  	/*
+  	* function to check for the black card deck status, if it's low
+  	* on cards, refresh the deck and the cards in the players hands.
+  	*/
+  	function outOfBlackCards () {
+  		if (blackCardArray.length < 1) {
+  			shuffleBlack();
+  		}
+  	}
+
 
 	/*
 	* function to generate a random number between 0 and the length of
@@ -86,31 +116,43 @@ $(document).ready(function(){
 	* Initially set up the start of the game by giving each player a
 	* hand of six white cards randomly selected from the
 	* whiteCardArray and remove those cards from the white card deck
-	* using .splice. Also take two random cards for the computer to 
-	* play, add them to the gameArray and splice those off as well
+	* using .splice. Check the deck isnt too low on cards
 	*/
-	for (var i = 0; i < playersHands; i++) {
-		randomNum = randomNumber(whiteCardArray);
-		playerOneHandArray[i] = whiteCardArray[randomNum];
-		whiteCardArray.splice(randomNum, 1);
-		randomNum = randomNumber(whiteCardArray);
-		playerTwoHandArray[i] = whiteCardArray[randomNum];
-		whiteCardArray.splice(randomNum, 1);
+	function theHandSetup () {
+		outOfWhiteCards();
+		for (var i = 0; i < playersHands; i++) {
+			randomNum = randomNumber(whiteCardArray);
+			playerOneHandArray[i] = whiteCardArray[randomNum];
+			whiteCardArray.splice(randomNum, 1);
+			randomNum = randomNumber(whiteCardArray);
+			playerTwoHandArray[i] = whiteCardArray[randomNum];
+			whiteCardArray.splice(randomNum, 1);
+		}
+
+		/*
+		* Write the content for each card to the back of the card
+		*/
+		for (var i = 0; i < playersHands; i++) {
+			$('#cardp0-'+i).html('<p>"'+playerOneHandArray[i]+'"</p>');
+			$('#cardp1-'+i).html('<p>"'+playerTwoHandArray[i]+'"</p>');
+		}
 	}
-	for (var i = 0; i < 2; i++) {
-		randomNum = randomNumber(whiteCardArray);
-		gameArray.push('"'+whiteCardArray[randomNum]+'"');
-		whiteCardArray.splice(randomNum, 1);
-	}
+	theHandSetup();
 	
 	/*
-	* Write the content for each card to the back of the card
+	* sets the computers hand up in the game array. check the deck
+	* isnt low on cards
 	*/
-	for (var i = 0; i < playersHands; i++) {
-		$('#cardp0-'+i).html('<p>"'+playerOneHandArray[i]+'"</p>');
-		$('#cardp1-'+i).html('<p>"'+playerTwoHandArray[i]+'"</p>');
+	function theComputerHandSetup () {
+		outOfWhiteCards();
+		for (var i = 0; i < 2; i++) {
+			randomNum = randomNumber(whiteCardArray);
+			gameArray.push('"'+whiteCardArray[randomNum]+'"');
+			whiteCardArray.splice(randomNum, 1);
+		}
 	}
-
+	theComputerHandSetup();
+	
 	/*
 	* Initially set player 1's label to green as they are the first
 	* active player. Set Player 2's label to white
@@ -123,24 +165,19 @@ $(document).ready(function(){
 	* is used to pick an entry from blackCardArray[] and displaying
 	* that entry to the sentence-space div. The card is then removed
 	* from the deck using .splice. Once the last card has been played
-	* a message is displayed. A check is doone to display only one
-	* black card per turn
+	* a message is displayed. A check is done to display only one
+	* black card per turn. If the cards run out the deck is refreshed.
 	*/
-		
 	$('#black-card-back').on('click', function(){
+		outOfBlackCards();
 		if (bool1 === false) {
-			if(blackCardArray.length) {
-				randomNum = randomNumber(blackCardArray);
-				$('#sentence-space').html('<p>"'+blackCardArray[randomNum]+'"</p>');
-				blackCardInUse = blackCardArray[randomNum];
-				tempBlackCardInUse = blackCardInUse;
-				blackCardArray.splice(randomNum, 1);
-			}
-			else {
-				$('#sentence-space').html('<p>"Aww no more cards :.("</p>');
-			}	
+			randomNum = randomNumber(blackCardArray);
+			$('#sentence-space').html('<p>"'+blackCardArray[randomNum]+'"</p>');
+			blackCardInUse = blackCardArray[randomNum];
+			tempBlackCardInUse = blackCardInUse;
+			blackCardArray.splice(randomNum, 1);
 		}
-		bool1 = true;//resets back to false on reset button
+		bool1 = true;//resets back to false on start OVER! button
 	});
 	
 	/*
@@ -203,11 +240,16 @@ $(document).ready(function(){
   		}
   		
   		/*
-  		* Refresh the content of the card
+  		* Refresh the content of the card with another card from 
+  		* the white deck and remove that card from the deck. If the 
+  		* deck has fewer than 14 cards (12 for the two players and 2
+  		* for the computer) then add back in all the cards.
   		*/
+  		outOfWhiteCards();
   		randomNum = randomNumber(whiteCardArray);
   		var newCard = whiteCardArray[randomNum]
   		cardInner = $('#'+card+' > .back').html('<p>'+newCard+'</p>');
+  		whiteCardArray.splice(randomNum, 1);
   	}
 	
 	/*
@@ -303,10 +345,5 @@ $(document).ready(function(){
 			}
   		}
   	});
-
-	/*
-	* update the cards
-	*/
-
 });
 
