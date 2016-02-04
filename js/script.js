@@ -538,85 +538,74 @@ $(document).ready(function(){
   	* player. The computer's label is always white. 
   	*/
   	$('#HECK').on('click', function(){
-  		if (winnerChosen === false) {
-  			var winningText = $('#sentence-space').text();
-  			if (comparisonCard === winningText && whosTurn === false) {
-  				playerOneScore++;
-  				$('#score-tracker-p1').html('<p>Player One - '+playerOneScore+'</p>');
-  				whosTurn = true;
-  				setPlayerOneActive();
-  			}
-  			else if (comparisonCard === winningText && whosTurn === true) {
-  				playerTwoScore++;
-  				$('#score-tracker-p2').html('<p>Player Two - '+playerTwoScore+'</p>');
-  				whosTurn = false;
-  				setPlayerTwoActive();
-  			}
-  			else {
-  				computerScore++;
-  				$('#score-tracker-c').html('<p>Computer - '+computerScore+'</p>');
-  				if (whosTurn === true) {
+  		if (cardDropped && bool1 === true) {
+  			if (winnerChosen === false) {
+  				var winningText = $('#sentence-space').text();
+  				if (comparisonCard === winningText && whosTurn === false) {
+  					playerOneScore++;
+  					$('#score-tracker-p1').html('<p>Player One - '+playerOneScore+'</p>');
+  					whosTurn = true;
+  					setPlayerOneActive();
+  				}
+  				else if (comparisonCard === winningText && whosTurn === true) {
+  					playerTwoScore++;
+  					$('#score-tracker-p2').html('<p>Player Two - '+playerTwoScore+'</p>');
   					whosTurn = false;
   					setPlayerTwoActive();
   				}
-  				else if (whosTurn === false) {
-  					whosTurn = true;
-  					setPlayerOneActive();
-				}
+  				else {
+  					computerScore++;
+  					$('#score-tracker-c').html('<p>Computer - '+computerScore+'</p>');
+  					if (whosTurn === true) {
+  					whosTurn = false;
+  					setPlayerTwoActive();
+  					}
+  					else if (whosTurn === false) {
+  						whosTurn = true;
+  						setPlayerOneActive();
+					}
+  				}
+  				if (playerOneScore === 10) {
+  					swal({
+  						title: "GAME OVER",
+  						text: "Player One Wins!",
+  						type: "success",
+  						showCancelButton: false,
+  						confirmButtonColor: "#DD6B55",
+  						confirmButtonText: "Congratulations!",
+  						closeOnConfirm: true,
+  						html: false
+					});
+  				}	
+  				else if (playerTwoScore === 10){
+  					swal({
+  						title: "GAME OVER",
+  						text: "Player Two Wins!",
+  						type: "success",
+  						showCancelButton: false,
+  						confirmButtonColor: "#DD6B55",
+  						confirmButtonText: "Congratulations!",
+  						closeOnConfirm: true,
+  						html: false
+					});
+  				}
+  				else if (computerScore === 10) {
+  					swal({
+  						title: "GAME OVER",
+  						text: "Computer Wins!",
+  						type: "success",
+  						showCancelButton: false,
+  						confirmButtonColor: "#DD6B55",
+  						confirmButtonText: "Congratulations!",
+  						closeOnConfirm: true,
+  						html: false
+					});
+  				}
+  				/*reset back to false to allow a new black card to be
+  				flipped*/
+  				bool1 = false; 
+  				winnerChosen = true;
   			}
-  			if (playerOneScore === 10) {
-  				swal({
-  					title: "GAME OVER",
-  					text: "Player One Wins!",
-  					type: "success",
-  					showCancelButton: false,
-  					confirmButtonColor: "#DD6B55",
-  					confirmButtonText: "Congratulations!",
-  					closeOnConfirm: true,
-  					html: false
-				});
-  			}	
-  			else if (playerTwoScore === 10){
-  				swal({
-  					title: "GAME OVER",
-  					text: "Player Two Wins!",
-  					type: "success",
-  					showCancelButton: false,
-  					confirmButtonColor: "#DD6B55",
-  					confirmButtonText: "Congratulations!",
-  					closeOnConfirm: true,
-  					html: false
-				});
-  			}
-  			else if (computerScore === 10) {
-  				swal({
-  					title: "GAME OVER",
-  					text: "Computer Wins!",
-  					type: "success",
-  					showCancelButton: false,
-  					confirmButtonColor: "#DD6B55",
-  					confirmButtonText: "Congratulations!",
-  					closeOnConfirm: true,
-  					html: false
-				});
-  			}
-  			
-  			/*reset back to false to allow a new black card to be
-  			flipped*/
-  			bool1 = false; 
-  			winnerChosen = true;
-  		}
-  		else {
-  			swal({
-  				title: "We are no longer the knights who say ni! We are now the knights who say ekki-ekki-ekki-pitang-zoom-boing!",
-  				text: "You have already chosen a winner.. RTFM!",
-  				type: "warning",
-  				showCancelButton: false,
-  				confirmButtonColor: "#DD6B55",
-  				confirmButtonText: "FUCK OFF!",
-  				closeOnConfirm: true,
-  				html: false
-			});
   		}	
   	});
 	
