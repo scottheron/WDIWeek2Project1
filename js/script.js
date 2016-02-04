@@ -70,7 +70,32 @@ $(document).ready(function(){
 		"What's the next Happy Meal toy?",
 		"Here is the church, Here is the people, Open the doors, and there is _________.",
 		"It's a pitty that kids these days are all getting involved with _________.",
-		"Today on Maury: 'Help! My son is _________"
+		"Today on Maury: 'Help! My son is _________.",
+		"Alternative medicine is now embracing the curative powers of _________.",
+		"What's that sound?",
+		"What ended my last relationship?",
+		"MTV's new reality show features eight washed-up celebrities living with _________.",
+		"I drink to forget _________.",
+		"I'm sorry, Professor, but I couldn't complete my homework because of _________.",
+		"What is Batman's guilty pleasure?",
+		"This is the way the world ends. Not with a bang, but with a _________.",
+		"What's a girl's best friend?",
+		"TSA guidelines now prohibit _________ on airplanes.",
+		"_________. That's how I want to die.",
+		"In teh new Disney Channel Original Movie, Hannah Montana struggles with _________ for the first time.",
+		"I get by with a little help from _________.",
+		"Dear Abby, I'm having some trouble with _________ and would like your advice.",
+		"Instead of coal, Santa now gives the bad children _________.",
+		"What's the most emo?",
+		"in 1,000 years, when paper money is a distant memory, how will we pay for goods and services?",
+		"A romantic, candlelit dinner would be incomplete without _________.",
+		"_________, Betcha can't have just one!",
+		"White people like _________.",
+		"_________, High five, bro.",
+		"Next from J.K. Rowling: Harry Potter and the Chamber of _________.",
+		"Introducing Xtreme Baseball! It's like baseball, but with _________!",
+		"War! what is it good for?",
+		"During sex, I like to think about _________."
 		];
 	}
 	shuffleBlack();
@@ -104,7 +129,83 @@ $(document).ready(function(){
 		"Barack Obama",
 		"my humps",
 		"the Tempur-Pedic Swedish Sleep System",
-		"scientology"
+		"scientology",
+		"dry Heaving",
+		"skeletor",
+		"Darth Vader",
+		"figgy Pudding",
+		"advice from a wise, old black man",
+		"five-Dollar Footlongs",
+		"elderly Japanese men",
+		"free samples",
+		"estrogen",
+		"sexual tension",
+		"famine",
+		"a stray pube",
+		"men",
+		"Heartwarming orphans",
+		"chunks of dead hitchhiker",
+		"a bag of magic beans",
+		"repression",
+		"prancing",
+		"my relationship status",
+		"overcompensation",
+		"peeing a little bit",
+		"pooping back and forth. Forever",
+		"a ball of earwax, semen, and toenail clippings",
+		"testicular torsion",
+		"the devil himself",
+		"The World of Warcraft",
+		"Dick Cheney",
+		"MechaHitler",
+		"being fabulous",
+		"pictures of boobs",
+		"a gentle caress of the inner thigh",
+		"the Amish",
+		"the rhythms of Africa",
+		"Lance Armstrong's missing testicle",
+		"pedophiles",
+		"the Pope",
+		"flying sex snakes",
+		"Sarah palin",
+		"feeding Rosie O'Donnel",
+		"sexy pillow fights",
+		"invading Poland",
+		"cybernetic enhancements",
+		"civilian casualties",
+		"jobs",
+		"the female orgasm",
+		"bitches",
+		"the Boy Scouts of America",
+		"Auschwitz",
+		"finger painting",
+		"the Care Bear Stare",
+		"The Jews",
+		"being marginalized",
+		"the blood of Christ",
+		"dead parents",
+		"the art of seduction",
+		"dying of dysentery",
+		"Mr. Clean, right behind you",
+		"magnets",
+		"Jewish fraternities",
+		"Hot Pockets",
+		"Natalie Portman",
+		"Agriculture",
+		"Judge Judy",
+		"surprise sex!",
+		"the homosexual agenda",
+		"Robert Downey, Jr.",
+		"the trail of tears",
+		"an M. Night Shyamalan plot twist",
+		"funky fresh rhymes",
+		"the light of a billion suns",
+		"amputees",
+		"throwing a virgin into a volcana",
+		"Italians",
+		"explosions",
+		"a good sniff",
+		"destroying the evidence"
 		];
 	}
 	shuffleWhite();
@@ -463,6 +564,43 @@ $(document).ready(function(){
   					setPlayerOneActive();
 				}
   			}
+  			if (playerOneScore === 10) {
+  				swal({
+  					title: "GAME OVER",
+  					text: "Player One Wins!",
+  					type: "success",
+  					showCancelButton: false,
+  					confirmButtonColor: "#DD6B55",
+  					confirmButtonText: "Congratulations!",
+  					closeOnConfirm: true,
+  					html: false
+				});
+  			}	
+  			else if (playerTwoScore === 10){
+  				swal({
+  					title: "GAME OVER",
+  					text: "Player Two Wins!",
+  					type: "success",
+  					showCancelButton: false,
+  					confirmButtonColor: "#DD6B55",
+  					confirmButtonText: "Congratulations!",
+  					closeOnConfirm: true,
+  					html: false
+				});
+  			}
+  			else if (computerScore === 10) {
+  				swal({
+  					title: "GAME OVER",
+  					text: "Computer Wins!",
+  					type: "success",
+  					showCancelButton: false,
+  					confirmButtonColor: "#DD6B55",
+  					confirmButtonText: "Congratulations!",
+  					closeOnConfirm: true,
+  					html: false
+				});
+  			}
+  			
   			/*reset back to false to allow a new black card to be
   			flipped*/
   			bool1 = false; 
@@ -481,11 +619,12 @@ $(document).ready(function(){
 			});
   		}	
   	});
-
+	
 	/*
-	* When the start OVER! button is clicked the state of the 
+	* function reset is called when the start over button is pressed.
+	* the state of the game is reset.
 	*/
-	$('#resetButton').on('click', function(){
+	function reset (){
 		console.log('here');
 		shuffleWhite();
 		shuffleBlack();
@@ -503,6 +642,10 @@ $(document).ready(function(){
 		$('#score-tracker-c').html('<p>Computer - '+computerScore+'</p>');
 		setPlayerOneActive();
 		$('#sentence-space').html('<p>Here comes some innapropriate fun!<br> <span class="fa fa-hand-o-left"></span> Click the deck to start!</p>');
+	}
+
+	$('#resetButton').on('click', function(){
+		reset();
 	});
 });
 
