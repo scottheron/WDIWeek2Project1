@@ -29,6 +29,7 @@ $(document).ready(function(){
 	var computerScore = 0;//computer score
 	var cardDropped = true;//track when a card has already been dropped
 	var winnerChosen = false;//tracks if a winning card has been chosen
+	var next = false;//tracks when answers have been scrolled through
 
 	/*
 	* sweetAlert!! Welcome to the game
@@ -503,27 +504,30 @@ $(document).ready(function(){
 	* content to the black card in a random order each time.
 	*/
 	$('#next').on('click', function(){	
-		tempBlackCardInUse = blackCardInUse;
-		randomNum = randomNumber(tempGameArray);
-		if (count1 < 3) {
-			if (blackCardInUse.indexOf('_________') != -1) {
-  				tempBlackCardInUse = tempBlackCardInUse.replace('_________', tempGameArray[randomNum]);
-  				$('#sentence-space').html('<p>"'+tempBlackCardInUse+'"</p>');
-  				tempGameArray.splice(randomNum, 1);
-  			}
-  			else {
-  				$('#sentence-space').html('<p>"'+tempBlackCardInUse+'"</p><br>'+tempGameArray[randomNum]);
-  				tempGameArray.splice(randomNum, 1);
-  			}
-  			tempBlackCardInUse = blackCardInUse;
-  			count1++;
-  		}	
-  		if (count1 == 3) {
-  			count1 = 0; 
-  			for (var i = 0; i < gameArray.length; i++){
+		if (cardDropped && bool1 === true) {
+			next = true;
+			tempBlackCardInUse = blackCardInUse;
+			randomNum = randomNumber(tempGameArray);
+			if (count1 < 3) {
+				if (blackCardInUse.indexOf('_________') != -1) {
+  					tempBlackCardInUse = tempBlackCardInUse.replace('_________', tempGameArray[randomNum]);
+  					$('#sentence-space').html('<p>"'+tempBlackCardInUse+'"</p>');
+  					tempGameArray.splice(randomNum, 1);
+  				}
+  				else {
+  					$('#sentence-space').html('<p>"'+tempBlackCardInUse+'"</p><br>'+tempGameArray[randomNum]);
+  					tempGameArray.splice(randomNum, 1);
+  				}
+  				tempBlackCardInUse = blackCardInUse;
+  				count1++;
+  			}	
+  			if (count1 == 3) {
+  				count1 = 0; 
+  				for (var i = 0; i < gameArray.length; i++){
   				tempGameArray.push(gameArray[i]);
-  			}
-  		} 
+  				}
+  			} 
+		} 
   	});
 
   	/*
@@ -538,7 +542,8 @@ $(document).ready(function(){
   	* player. The computer's label is always white. 
   	*/
   	$('#HECK').on('click', function(){
-  		if (cardDropped && bool1 === true) {
+  		if (cardDropped && bool1 && next === true) {
+  			next = false;
   			if (winnerChosen === false) {
   				var winningText = $('#sentence-space').text();
   				if (comparisonCard === winningText && whosTurn === false) {
@@ -623,6 +628,7 @@ $(document).ready(function(){
 		count1 = 0;
 		cardDropped = true;
 		bool1 = false;
+		next = false;
 		playerOneScore = 0;
 		$('#score-tracker-p1').html('<p>Player One - '+playerOneScore+'</p>');
 		playerTwoScore = 0;
