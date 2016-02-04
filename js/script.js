@@ -44,6 +44,17 @@ $(document).ready(function(){
   		html: false
 		});
 	
+	/*
+	* the help screen. Click it to make it go away.
+	*/
+	$('.helpScreen').on('click', function(){
+		$('.helpScreen').hide();
+		$('.helpScreenBackground').hide();
+	});
+	$('.helpScreenBackground').on('click', function(){
+		$('.helpScreen').hide();
+		$('.helpScreenBackground').hide();
+	});
 
 	/*
 	* Black card array holding the sentence card values. This is the
@@ -341,7 +352,7 @@ $(document).ready(function(){
 	
 
 	/*
-	*turning the player one div into a droppable zone 
+	*turning the player one card div into a droppable zone 
 	*/
 	function baseDropEvent( event, ui ) {
   		var draggable = ui.draggable;
@@ -352,7 +363,7 @@ $(document).ready(function(){
   	}
 
   	/*
-	*turning the player two div into a droppable zone 
+	*turning the player two card div into a droppable zone 
 	*/
 	function topDropEvent( event, ui ) {
   		var draggable = ui.draggable;
@@ -363,7 +374,8 @@ $(document).ready(function(){
   	}
 
 	/*
-	* creates drop space
+	* creates drop spaces for the drop zone and each of the players
+	* divs that contain the cards.
 	*/
 	$('#card-drop').droppable({
     	drop: handleDropEvent
