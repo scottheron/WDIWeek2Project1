@@ -1,4 +1,4 @@
-# Cards Against Humanity
+# Cards Against The World
 
 This is a browser based version of the popular Cards Against Humanity card game. It uses jQuery's draggable and droppable features, bootstrap CSS buttons and sweetAlert popups. The game uses a reduced subset of the actual game cards but more will be added in the future. In addition, the game is not able to handle two card answers at this time. This ability will be added in further updates.
 
