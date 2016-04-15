@@ -35,7 +35,7 @@ $(document).ready(function(){
 	* sweetAlert!! Welcome to the game
 	*/
 	swal({
-  		title: "Welcome to Cards Against Humanity!",
+  		title: "Welcome to Cards Against The World!",
   		text: "MUCH WARNINGS, MANY NSFW!",
   		type: "warning",
   		showCancelButton: false,
