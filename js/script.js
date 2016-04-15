@@ -1,5 +1,5 @@
 /************************************************************
-*WDI 06 - Project 1, Cards Against Humanity. script.js file.*
+*WDI 06 - Project 1, Cards Against The World. script.js file.*
 ************************************************************/
 
 $(document).ready(function(){
